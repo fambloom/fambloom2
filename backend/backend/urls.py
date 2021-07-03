@@ -31,7 +31,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('uppercase_text', views.uppercase_text, name='uppercase_text'),
     path('api/', include(router.urls)),
-    path('stats/countWomen', views.countWomen, name='stats/countWomen'), 
-    path('stats/countMen', views.countMen, name='stats/countMen'), 
+    path('stats/countWomen/', views.countWomen, name='stats/countWomen'), 
+    path('stats/countMen/', views.countMen, name='stats/countMen'), 
     re_path(".*", TemplateView.as_view(template_name="index.html")),
 ]

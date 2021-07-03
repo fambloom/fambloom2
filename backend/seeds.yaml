@@ -1,0 +1,37 @@
+- model: service.Tree
+  fields: 
+    treeCode: A
+    treeName: Smith Family
+- model: service.Person
+  fields: 
+    tree: A
+    id: 1
+    firstName: Jane
+    lastName: Doe
+    gender: female
+    tree: A
+    spouses:
+      - 2
+    children:
+      - 3
+- model: service.Person
+  fields: 
+    tree: A
+    id: 2
+    firstName: John
+    lastName: Smith
+    gender: male
+    spouses:
+      - 1
+    children:
+      - 3
+- model: service.Person
+  fields: 
+    tree: A
+    id: 3
+    firstName: Sarah
+    lastName: Smith
+    gender: female
+    parents:
+      - 2
+      - 1

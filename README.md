@@ -27,6 +27,6 @@ Created with docker, django, react, postgres, heroku
   - models moved to folder, migrations moved within models folder  
   - in backend/urls.py, there is a regex that sends all urls that are undefined to the index.html template  
     - this causes a problem when accessing sites without appending a backslash  
-      - `<your app name>.herokuapp.com/admin/` will display the Django admin page  
-      - `<your app name>.herokuapp.com/admin` will not display the Django admin page  
+      - `fambloom2.herokuapp.com/admin/` will display the Django admin page  
+      - `fambloom2.herokuapp.com/admin` will not display the Django admin page  
   - a scripts/ folder was added (backend/scripts) which contains the `entrypoint.sh` file which defines the startup process for the Django container which is called by the Dockerfile  

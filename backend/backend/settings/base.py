@@ -24,7 +24,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'service.apps.ServiceConfig'
+    'service.apps.ServiceConfig',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -35,6 +39,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'backend.urls'
@@ -121,3 +126,36 @@ STATIC_URL = '/static/'
 APPEND_SLASH = True
 
 MIGRATION_MODULES = {'service': 'service.models.migrations'}
+
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:3000',
+    'http://localhost:8000',
+
+    'http://0.0.0.0:8000',
+    'http://0.0.0.0:3000',
+
+    'https://localhost:3000',
+    'https://localhost:8000',
+
+    'https://0.0.0.0:8000',
+    'https://0.0.0.0:3000',
+
+    'https://0.0.0.0:8000',
+    'https://0.0.0.0:3000',
+
+    'http://172.20.0.4:8000',
+    'http://172.20.0.4:3000',
+
+    'https://fambloom2.herokuapp.com',
+    'https://fambloom2.herokuapp.com',
+
+    'http://fambloom2.herokuapp.com',
+    'http://fambloom2.herokuapp.com',
+
+
+    'https://172.20.0.4:8000',
+    'https://172.20.0.4:3000',
+
+)
+
+ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0', 'localhost', '172.20.0.4', 'fambloom2.herokuapp.com', 'frontend', 'backend', 'db']

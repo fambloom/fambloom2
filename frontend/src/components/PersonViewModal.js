@@ -21,7 +21,7 @@ export default class PersonViewModal extends Component {
 
   refreshList = () => {
     axios
-      .get(`/api/persondetail/${this.state.activeItem.id}`)
+      .get(`/api/persondetail/${this.state.activeItem.id}/`)
       .then((res) => this.setState({ personDetail: res.data }))
       .catch((err) => console.log(err));
   };
@@ -69,7 +69,7 @@ export default class PersonViewModal extends Component {
     }
 
     axios
-      .post(`/api/persondetail/${item.id}`, item, )
+      .post(`/api/persondetail/${item.id}/`, item, )
       .then((res) => {console.log(res.data); this.refreshList(); })
       .catch(err => { console.log(err) });
   };

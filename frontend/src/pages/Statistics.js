@@ -5,7 +5,7 @@ import { Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button
 } from 'reactstrap';
 import axios from "axios";
-import { VictoryPie } from 'victory';
+import { PieChart } from 'react-minimal-pie-chart';
 
 // Example data
 // backend will pass in array of two numbers: # of female, # of male.
@@ -45,12 +45,9 @@ export default class Statistics extends Component {
   };
 
   render() {
-    console.log(this.state.women);
     return (
       <div>
-        <br></br>
-        <br></br>
-        <br></br>
+        
 
         <Container>
 
@@ -59,17 +56,11 @@ export default class Statistics extends Component {
         <Row>
       <Card>
         <CardBody body className="text-center">
-        <VictoryPie
-          padAngle={({ datum }) => datum.y}
-          colorScale={["tomato", "orange", "gold", "cyan", "navy" ]}
-          innerRadius={75}
-          data={[
-            { x: "women", y: this.state.women },
-            { x: "men", y: this.state.men  }
-          ]}
-        />
-          <CardTitle tag="h5" centered>TreeName</CardTitle>
-          <CardText centered>female | male</CardText>
+        {this.state.women && <PieChart lineWidth={50} label={({ dataEntry }) => dataEntry.title}
+          data={[{ title: "women", value: this.state.women,  color: '#E38627' },
+            { title: "men", value: this.state.men,  color: '#C13C37'   }]}
+        /> }
+          <CardTitle tag="h5" centered>Total Statistics</CardTitle>
         </CardBody>
         </Card>
         </Row>

@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models.models import Person, Tree
+from .models import Person, Tree
 
 class PersonAdmin(admin.ModelAdmin):
     list_display = ('firstName', 'lastName', 'bio', 'gender', 'birthPlace')

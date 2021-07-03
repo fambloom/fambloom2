@@ -1,10 +1,17 @@
+FROM node:12 as build-deps
+WORKDIR /frontend
+COPY ./frontend/package.json ./frontend/yarn.lock ./
+RUN yarn
+COPY ./frontend /frontend
+RUN yarn build
+
 FROM python:3.7
 
 # Install curl, node, & yarn
-RUN apt-get install -y curl \
-    && curl -sL https://deb.nodesource.com/setup_12.x | bash - \
-    && apt-get install -y nodejs \
-    && curl -o- -L https://yarnpkg.com/install.sh | bash
+# RUN apt-get install -y curl \
+#     && curl -sL https://deb.nodesource.com/setup_12.x | bash - \
+#     && apt-get install -y nodejs \
+#     && curl -o- -L https://yarnpkg.com/install.sh | bash
 
 WORKDIR /app/backend
 

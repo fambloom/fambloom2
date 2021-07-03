@@ -7,15 +7,18 @@ Created with docker, django, react, postgres, heroku
   2) Clone github repo  
   3) Run: `docker-compose up --build`  
 
+ - if needed:
+ - `heroku builds:cancel -a fambloom2`
+ 
 # Production Deployment  
   1) `heroku git:remote -a fambloom2`
   2) `git push heroku master`
 
-   <!-- == OR == (faster)
+   == OR == (faster)
   1) `heroku container:login`
   2) `docker build -t registry.heroku.com/fambloom2/web .`
   3) `docker push registry.heroku.com/fambloom2/web`
-  4) `heroku container:release -a fambloom2 web` -->
+  4) `heroku container:release -a fambloom2 web`
 
 ## Third-Party Guides  
 - Initial Setup: https://dev.to/englishcraig/creating-an-app-with-docker-compose-django-and-create-react-app-31lf  

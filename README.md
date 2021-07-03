@@ -11,7 +11,7 @@ Created with docker, django, react, postgres, heroku
   1) `heroku git:remote -a fambloom2`
   2) `git push heroku master`
 
-   == OR ==
+   == OR == (faster)
   1) `heroku container:login`
   2) `docker build -t registry.heroku.com/fambloom2/web .`
   3) `docker push registry.heroku.com/fambloom2/web`

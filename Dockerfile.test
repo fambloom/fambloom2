@@ -1,9 +1,10 @@
-FROM python:3.7
+FROM python:3.8
 
 # Install curl, node, & yarn
 RUN apt-get install -y curl \
     && curl -sL https://deb.nodesource.com/setup_12.x | bash - \
     && apt-get install -y nodejs \
+    # && curl -o- -L https://www.npmjs.com/install.sh | bash
     && curl -o- -L https://yarnpkg.com/install.sh | bash
 
 WORKDIR /app/backend
@@ -17,12 +18,14 @@ WORKDIR /app/frontend
 
 COPY ./frontend/package.json ./frontend/yarn.lock /app/frontend/
 RUN $HOME/.yarn/bin/yarn install
+# RUN npm install
 
 # Add the rest of the code
 COPY . /app/
 COPY ./backend/scripts/ /app/
 # Build static files
 RUN $HOME/.yarn/bin/yarn build
+# RUN npm run build
 
 # Have to move all static files other than index.html to root/
 # for whitenoise middleware

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Modal from "./Modal";
 import axios from "axios";
+import * as settings from '../settings';
 
 
 class PersonList extends Component {
@@ -16,6 +17,10 @@ class PersonList extends Component {
         gender: "",
         bio: "",
         birthPlace: "",
+        parents: "",
+        spouse: "",
+        siblings: "",
+        children: "",
       },
     };
   }
@@ -26,7 +31,7 @@ class PersonList extends Component {
 
   refreshList = () => {
     axios
-      .get(`/api/person/`)
+      .get(`${settings.API_SERVER}/api/person/`)
       .then((res) => this.setState({ peopleList: res.data }))
       .catch((err) => console.log(err));
   };
@@ -41,20 +46,20 @@ class PersonList extends Component {
 
     if (item.id) {
       axios
-        .put(`/api/person/${item.id}/`, item, )
+        .put(`${settings.API_SERVER}/api/person/${item.id}/`, item, )
         .then((res) => this.refreshList());
       return;
     }
 
     axios
-      .post(`/api/person/`, item, )
+      .post(`${settings.API_SERVER}/api/person/`, item, )
       .then((res) => {console.log(res.data); this.refreshList(); })
       .catch(err => { console.log(err) });
   };
 
   handleDelete = (item) => {
     axios
-      .delete(`/api/person/${item.id}/`)
+      .delete(`${settings.API_SERVER}/api/person/${item.id}/`)
       .then((res) => this.refreshList());
   };
 
@@ -65,6 +70,10 @@ class PersonList extends Component {
       gender: "",
       bio: "",
       birthPlace: "",
+      parents: "",
+      spouse: "",
+      siblings: "",
+      children: "",
     };
 
     this.setState({ activeItem: item, modal: !this.state.modal });

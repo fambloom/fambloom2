@@ -23,10 +23,9 @@ const NavigationBar = (props) => {
   return (
     <div>
       <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">FamBloom</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
-          <Nav className="mr-auto" navbar>
+          <Nav className="container-fluid" navbar>
             <NavItem>
               <NavLink exact href="/person_list">Person List</NavLink>
             </NavItem>
@@ -41,6 +40,9 @@ const NavigationBar = (props) => {
             </NavItem>
             <NavItem>
               <NavLink exact href="/personview">PersonView</NavLink>
+            </NavItem>
+            <NavItem className="ml-auto">
+              <NavLink exact href="/">Home</NavLink>
             </NavItem>
           </Nav>
         </Collapse>

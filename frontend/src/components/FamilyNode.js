@@ -13,15 +13,29 @@ export default class FamilyNode extends Component {
     };
   }
 
-  
+  getFirstName = () => {
+    if (this.state.node) {
+      return this.state.node.firstName;
+    } else {
+      return "FirstName"
+    }
+  }
+
+  getLastName = () => {
+    if (this.state.node) {
+      return this.state.node.lastName;
+    } else {
+      return "LastName"
+    }
+  }
 
   render() {
     return (
       <div>
       <Card>
         <CardBody>
-        <CardTitle tag="h5">{this.state.node.firstName}</CardTitle>
-        <CardSubtitle tag="h6" className="mb-2 text-muted">{this.state.node.lastName}</CardSubtitle>
+        <CardTitle tag="h5">{this.getFirstName()}</CardTitle>
+        <CardSubtitle tag="h6" className="mb-2 text-muted">{this.getLastName()}</CardSubtitle>
         </CardBody>
       </Card>
       </div>

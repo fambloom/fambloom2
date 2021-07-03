@@ -70,10 +70,6 @@ class PersonList extends Component {
       gender: "",
       bio: "",
       birthPlace: "",
-      parents: "",
-      spouse: "",
-      siblings: "",
-      children: "",
     };
 
     this.setState({ activeItem: item, modal: !this.state.modal });

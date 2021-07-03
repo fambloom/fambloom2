@@ -32,5 +32,6 @@ urlpatterns = [
     path('uppercase_text', views.uppercase_text, name='uppercase_text'),
     path('api/', include(router.urls)),
     re_path(".*", TemplateView.as_view(template_name="index.html")),
-
+    path('stats/countWomen', views.countWomen, name='stats/countWomen'), 
+    path('stats/countMen', views.countMen, name='stats/countMen'), 
 ]

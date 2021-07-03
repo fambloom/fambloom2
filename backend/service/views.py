@@ -22,3 +22,11 @@ def uppercase_text(request):
     text = request.GET.get("text", "")
 
     return JsonResponse({"uppercase_text": text.upper()})
+
+def countWomen(request):
+    count = Person.objects.filter(gender="female").count()
+    return JsonResponse({"women": count})
+
+def countMen(request):
+    count = Person.objects.filter(gender="male").count()
+    return JsonResponse({"men": count})

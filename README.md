@@ -20,6 +20,7 @@ Created with docker, django, react, postgres, heroku
 ## Third-Party Guides  
 - Initial Setup: https://dev.to/englishcraig/creating-an-app-with-docker-compose-django-and-create-react-app-31lf  
 - Connecting Django and Postgres in Heroku Deployment: https://testdriven.io/blog/deploying-django-to-heroku-with-docker/  
+- https://dev.to/mdrhmn/deploying-react-django-app-using-heroku-2gfa
 
 ###  Code Changes  
   Django:  

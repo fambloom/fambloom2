@@ -3,7 +3,6 @@ import {
   Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Input, Label, NavItem,
 } from "reactstrap";
 import axios from "axios";
-import * as settings from '../settings';
 import AddPersonViewModal from './AddModal';
 
 export default class PersonViewModal extends Component {
@@ -22,7 +21,7 @@ export default class PersonViewModal extends Component {
 
   refreshList = () => {
     axios
-      .get(`${settings.API_SERVER}/api/persondetail/${this.state.activeItem.id}`)
+      .get(`/api/persondetail/${this.state.activeItem.id}`)
       .then((res) => this.setState({ personDetail: res.data }))
       .catch((err) => console.log(err));
   };
@@ -64,20 +63,20 @@ export default class PersonViewModal extends Component {
 
     if (item.id) {
       axios
-        .put(`${settings.API_SERVER}/api/persondetail/${item.id}/`, item, )
+        .put(`/api/persondetail/${item.id}/`, item, )
         .then((res) => this.refreshList());
       return;
     }
 
     axios
-      .post(`${settings.API_SERVER}/api/persondetail/${item.id}`, item, )
+      .post(`/api/persondetail/${item.id}`, item, )
       .then((res) => {console.log(res.data); this.refreshList(); })
       .catch(err => { console.log(err) });
   };
 
   handleDelete = (item) => {
     axios
-      .delete(`${settings.API_SERVER}/api/persondetail/${item.id}/`)
+      .delete(`/api/persondetail/${item.id}/`)
       .then((res) => this.refreshList());
   };
 

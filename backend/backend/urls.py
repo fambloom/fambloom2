@@ -22,16 +22,16 @@ from service import views
 
 router = routers.DefaultRouter()
 router.register(r'person', views.PersonView, 'person')
+router.register(r'persondetail', views.PersonDetailView, 'persondetail')
 router.register(r'tree', views.TreeView, 'tree')
 router.register(r'treedetail', views.TreeDetailView, 'treedetail')
-
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('uppercase_text', views.uppercase_text, name='uppercase_text'),
     path('api/', include(router.urls)),
-    re_path(".*", TemplateView.as_view(template_name="index.html")),
     path('stats/countWomen', views.countWomen, name='stats/countWomen'), 
     path('stats/countMen', views.countMen, name='stats/countMen'), 
+    re_path(".*", TemplateView.as_view(template_name="index.html")),
 ]

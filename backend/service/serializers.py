@@ -1,6 +1,25 @@
 from rest_framework import serializers
 from .models.models import Person, Tree
 
+
+
+class PersonDetailRelativeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Person
+        fields = ('id', 'firstName', 'lastName', 'gender', 'tree' )
+
+
+class PersonDetailSerializer(serializers.ModelSerializer):
+    parents = PersonDetailRelativeSerializer(many=True, allow_null=True, required=False)
+    siblings = PersonDetailRelativeSerializer(many=True, allow_null=True, required=False)
+    spouses = PersonDetailRelativeSerializer(many=True, allow_null=True, required=False)
+    children = PersonDetailRelativeSerializer(many=True, allow_null=True, required=False)
+    class Meta:
+        model = Person
+        fields = ('id', 'firstName', 'lastName', 'gender', 
+        'tree', 'parents', 'siblings', 'spouses', 'children',
+        'bio', 'birthDate', 'birthPlace', 'image')
+
 class PersonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Person

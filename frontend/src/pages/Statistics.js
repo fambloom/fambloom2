@@ -5,7 +5,6 @@ import { Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button
 } from 'reactstrap';
 import axios from "axios";
-import * as settings from '../settings';
 import { VictoryPie } from 'victory';
 
 // Example data

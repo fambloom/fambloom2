@@ -4,7 +4,6 @@ import { Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button, FormGroup, Label, Input
 } from 'reactstrap';
 import axios from "axios";
-import * as settings from '../settings';
 import './Pages.css';
 
 // dont forget to import stuff from reactstrap when u use them
@@ -22,7 +21,7 @@ export default class Home extends Component {
 
   renderTrees = () => {
     axios
-      .get(`${settings.API_SERVER}/api/tree/`)
+      .get(`/api/tree/`)
       .then((res) => this.setState({ trees: res.data }))
       .catch((err) => console.log(err));
   };

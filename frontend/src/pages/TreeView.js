@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import InTreeView from "../pages/InTreeView";
 
 import axios from "axios";
-import * as settings from '../settings';
 import {  } from "reactstrap";
 import * as tools from "../tools";
 // import PinchZoomPan from '../PinchZoomPan/PinchZoomPan';
@@ -42,7 +41,7 @@ export default class TreeView extends Component {
 
   refreshList = () => {
     axios
-      .get(`${settings.API_SERVER}/api/treedetail/A`)
+      .get(`/api/treedetail/A`)
       .then((res) => {
         this.setState((state, props) => ( {newPeopleList: tools.objectReformat(res.data.people)} ) );   
         console.log("new items here");

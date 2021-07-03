@@ -1,5 +1,6 @@
 import os
 import dj_database_url
+import django_heroku
 from backend.settings.base import *
 
 # follow here for setup: https://dev.to/englishcraig/docker-django-react-building-assets-and-deploying-to-heroku-24jh
@@ -34,3 +35,6 @@ DATABASE_URL = os.environ.get('DATABASE_URL')
 db_from_env = dj_database_url.config(
     default=DATABASE_URL, conn_max_age=500, ssl_require=True)
 DATABASES['default'].update(db_from_env)
+
+
+django_heroku.settings(locals())

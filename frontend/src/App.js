@@ -16,6 +16,10 @@ import PersonView from './components/PersonView'
 // import Step2Join from './pages/Step2Join'
 // import Step2View from './pages/Step2View'
 
+import axios from 'axios';
+
+axios.defaults.xsrfCookieName = 'csrftoken'
+axios.defaults.xsrfHeaderName = 'X-CSRFToken'
 
 class App extends Component {
   

@@ -1,5 +1,6 @@
 import React, { Component, useState } from "react";
 import { Container, Row, Col } from "reactstrap";
+import { useHistory } from "react-router-dom";
 import { Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button, FormGroup, Label, Input
 } from 'reactstrap';
@@ -7,14 +8,14 @@ import axios from "axios";
 import './Pages.css';
 
 // dont forget to import stuff from reactstrap when u use them
-export default class Home extends Component {
+class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
       trees: [],
       activeItem: {
         treeName: '',
-      }
+      },
     };
   }
 
@@ -64,17 +65,26 @@ export default class Home extends Component {
   };
 
 
+  handleGotoTree = (treeCode) => {
+    // let history = useHistory();
+    // history.push('/treeview', {
+    //   code: treeCode
+    // })
+  }
+
   renderItems = () => {
     const newItems = this.state.trees
     return newItems.map((item) => (
-      <div>
-        <Card>
+
+        
+        <Card className="mx-4">
         <CardBody body className="text-center">
           <CardTitle tag="h5" centered>{item.treeName}</CardTitle>
-          <Button centered outline color="secondary">Go to Tree</Button>
+          <Button onClick={() => this.handleGotoTree(item.treeCode)} centered outline color="secondary">Go to Tree</Button>
         </CardBody>
       </Card>
-      </div>
+    
+      
     ));
   };
 
@@ -105,33 +115,17 @@ export default class Home extends Component {
 
       <Container style={{flex:1, justifyContent: "center", alignItems: "center"}}>
 
-
-
-
-
       <Row style={{flex:1, justifyContent: "center", alignItems: "center"}}>
           <img width="60px" src="https://cdn.discordapp.com/attachments/854112992025903142/859693896300232724/left-icon.png" alt="Icon" />
           <h3 body className="text-center">List of Public Trees</h3>
           <img width="60px" src="https://cdn.discordapp.com/attachments/854112992025903142/859693897420636190/right-icon.png" alt="Icon" />
       </Row>
-
+     
       <br></br>
-
-
-      <br></br>
-
-      <Row>
-      <Col sm="4">
+      <Row className="flex-wrap" style={{flex:1, justifyContent: "center", alignItems: "center"}}>
       {this.renderItems()}
-      </Col>
       </Row>
       <br></br>
-
-      
-      <br></br>
-      <br></br>
-      <br></br>
-
       </Container>
 
       <Container>
@@ -149,10 +143,6 @@ export default class Home extends Component {
         <Label for="treeName" hidden>Tree Name</Label>
         <Input type="treeName" name="treeName" id="treeName" onChange={this.handleChange} value={this.state.activeItem.treeName} placeholder="Tree Name" />
       </FormGroup>
-      {/* <FormGroup>
-        <Label for="treepassword" hidden>Tree Password</Label>
-        <Input type="treepassword" name="treepassword" id="treepassword" onChange={this.handleChange} value={this.state.activeItem.password} placeholder="Tree Password" />
-      </FormGroup> */}
     <CardText centered></CardText>
     <Button centered outline color="secondary" onClick={() => {this.handleSubmit(this.state.activeItem.treeName); this.refreshPage();}}>Submit</Button>
   </CardBody>
@@ -169,3 +159,5 @@ export default class Home extends Component {
   }
 
 }
+
+export default Home;

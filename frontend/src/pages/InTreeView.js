@@ -67,7 +67,7 @@ export default class TreeView extends Component {
         height={HEIGHT}
         className={styles.tree}
         renderNode={(node) => ( <div>
-          <FamilyNode onClick={this.handleClick}
+          <FamilyNode //onClick={this.handleClick}
             key={node.id} node={node}
             style={{ width: WIDTH, height: HEIGHT,
               transform: `translate(${node.left * (WIDTH / 2)}px, ${node.top * (HEIGHT / 2)}px)`,}} /> </div>

@@ -1,6 +1,6 @@
 import './App.css';
 import React, { Component } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, withRouter } from "react-router-dom";
 import MyNavbar from './components/MyNavbar';
 import PersonList from './components/PersonList';
 import Home from './pages/Home'
@@ -25,29 +25,28 @@ class App extends Component {
   
   render() {
     return (
-      <div>
         <BrowserRouter>
         <MyNavbar/>
         <Switch>
           <Route exact path="/">
             <Home/>
           </Route>
-          <Route path="/statistics">
+          <Route exact path="/statistics">
             <Statistics/>
           </Route>
-           <Route path="/person_list">
+           <Route exact path="/person_list">
             <PersonList/>
           </Route>
-           <Route path="/treenode">
+           <Route exact path="/treenode">
             <FamilyNode/>
           </Route>
-          <Route path="/statistics">
+          <Route exact path="/statistics">
             <Statistics/>
           </Route>
-          <Route path="/treeview">
+          <Route exact path="/treeview">
             <TreeView/>
           </Route>
-          <Route path="/personview">
+          <Route exact path="/personview">
             <PersonView/>
           </Route>
           {/*
@@ -65,7 +64,6 @@ class App extends Component {
           </Route> */}
         </Switch>
         </BrowserRouter>
-      </div>
     );
   }
 }

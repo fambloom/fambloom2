@@ -1,19 +1,20 @@
 import React, { Component } from "react";
 import InTreeView from "../pages/InTreeView";
-
 import axios from "axios";
 import {  } from "reactstrap";
 import * as tools from "../tools";
 // import PinchZoomPan from '../PinchZoomPan/PinchZoomPan';
 
 
-export default class TreeView extends Component {
+class TreeView extends Component {
    WIDTH = 150;
    HEIGHT = 150;
 
   constructor(props) {
     super(props);
+    
     this.state = {
+      code: null,
       newPeopleList: [],
       peopleList: [],
       modal: false,
@@ -40,6 +41,7 @@ export default class TreeView extends Component {
   }
 
   refreshList = () => {
+
     axios
       .get(`/api/treedetail/A/`)
       .then((res) => {
@@ -62,3 +64,5 @@ export default class TreeView extends Component {
   }
 
 }
+
+export default TreeView;

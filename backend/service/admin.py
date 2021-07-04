@@ -7,7 +7,7 @@ class PersonAdmin(admin.ModelAdmin):
     list_display = ('firstName', 'lastName', 'bio', 'gender', 'birthPlace')
 
 class TreeAdmin(admin.ModelAdmin):
-    list_display = ('treeCode', 'treeName', 'password')
+    list_display = ( 'treeCode', 'treeName', 'password')
 
 # Register your models here.
 

@@ -2,24 +2,31 @@ import React, { Component } from "react";
 import {
   Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Input, Label,
 } from "reactstrap";
+import axios from "axios";
 
 export default class CustomModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
       activeItem: this.props.activeItem,
+      newItem: this.props.newItem,
+      parent: this.props.parent,
+      relationship: this.props.relationship,
     };
   }
 
   handleChange = (e) => {
     let { name, value } = e.target;
-    const activeItem = { ...this.state.activeItem, [name]: value };
+    if (name == "gender") {
+      value = value.toLowerCase();
+    }
+    const newItem = { ...this.state.newItem, [name]: value };
 
-    this.setState({ activeItem });
+    this.setState({ newItem });
   };
 
   render() {
-    const { toggle, onSave } = this.props;
+    const { toggle, onSave, onParentSave } = this.props;
 
     return ( <div>
       <Modal isOpen={true} toggle={toggle}>
@@ -32,7 +39,7 @@ export default class CustomModal extends Component {
                 type="text"
                 id="firstName"
                 name="firstName"
-                value={this.state.activeItem.firstName}
+                value={this.state.newItem.firstName}
                 onChange={this.handleChange}
                 placeholder="Enter first name"
               />
@@ -43,23 +50,23 @@ export default class CustomModal extends Component {
                 type="text"
                 id="lastName"
                 name="lastName"
-                value={this.state.activeItem.lastName}
+                value={this.state.newItem.lastName}
                 onChange={this.handleChange}
                 placeholder="Enter last name"
               />
             </FormGroup>
-            {/*<FormGroup>
+            <FormGroup>
               <Label for="gender">Gender</Label>
                 <Input 
                   type="text" 
                   id="gender" 
                   name="gender"
-                  value={this.state.activeItem.gender}
+                  value={this.state.newItem.gender}
                   onChange={this.handleChange}
                   placeholder="Enter gender">
                 </Input>
-            </FormGroup> */}
-            <FormGroup>
+            </FormGroup>
+          {/*   <FormGroup>
               <Label for="gender">Gender</Label>
                 <Input type="select" id="gender" name="gender"
                   value={this.state.activeItem.gender}
@@ -69,14 +76,14 @@ export default class CustomModal extends Component {
                   <option>male</option>
                   <option>other</option>
                 </Input>
-            </FormGroup> 
+            </FormGroup> */}
             <FormGroup>
               <Label for="bio">Biography</Label>
               <Input
                 type="text"
                 id="bio"
                 name="bio"
-                value={this.state.activeItem.bio}
+                value={this.state.newItem.bio}
                 onChange={this.handleChange}
                 placeholder="Enter biography"
               />
@@ -87,7 +94,7 @@ export default class CustomModal extends Component {
                 type="text"
                 id="birthPlace"
                 name="birthPlace"
-                value={this.state.activeItem.birthPlace}
+                value={this.state.newItem.birthPlace}
                 onChange={this.handleChange}
                 placeholder="Enter birth place"
               />
@@ -95,7 +102,7 @@ export default class CustomModal extends Component {
           </Form>
         </ModalBody>
         <ModalFooter>
-          <Button color="success" onClick={() => onSave(this.state.activeItem)}>
+          <Button color="success" onClick={() => onSave(this.state.activeItem, this.state.newItem)}>
             Save
           </Button>
         </ModalFooter>

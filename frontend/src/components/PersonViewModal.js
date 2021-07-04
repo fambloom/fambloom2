@@ -204,7 +204,6 @@ export default class PersonViewModal extends Component {
   // takes array of parent/spouse/child IDs and iterates through tree
     // findPerson(inputObject, personArray) {
     //     let persons = [];
-    //     const keys = Object.keys(inputObject);
     //     for (let i = 0; i < keys; i+=1) {
     //             if(personArray[0] || personArray[1] == inputObject[i].id) {
     //                 persons.push(inputObject[i].firstName);
@@ -258,7 +257,7 @@ export default class PersonViewModal extends Component {
             onSave={this.handleSubmit}
           />
         ) : null}
-          <Button color="success">
+          <Button color="success" onClick={toggle}>
             Exit
           </Button>
         </ModalFooter>

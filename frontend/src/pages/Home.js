@@ -54,7 +54,7 @@ export default class Home extends Component {
         <Container>
           <Row>
           <Col sm="10" md={{ size: 6, offset: 3 }}>
-          <Card body className="text-center">
+          <Card body className="text-center" id="border">
             <img width="100%" src="https://cdn.discordapp.com/attachments/854112992025903142/859679165317382154/logo.png" alt="Logo" />
             <CardText className="fonts">discover how your family line blossomed through time</CardText>
           </Card>

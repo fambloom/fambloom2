@@ -53,13 +53,24 @@ export default class Statistics extends Component {
         <br></br>
         <br></br>
 
-        <Container>
+        <Container style={{flex:1, justifyContent: "center", alignItems: "center"}}>
 
+        <Row>
+        <Col xs="6" md={{ size: 4, offset: 3 }}>
+          <img width="25%" src="https://cdn.discordapp.com/attachments/854112992025903142/859693896300232724/left-icon.png" alt="Icon" />
+        </Col>
+        <Col xs="6" md={{ size: 4, offset: 4 }}>
         <h3 body className="text-center">Statistics</h3>
+        </Col>
+        <Col xs="6" md={{ size: 4, offset: 8 }}>
+          <img width="25%" src="https://cdn.discordapp.com/attachments/854112992025903142/859693897420636190/right-icon.png" alt="Icon" />
+        </Col>      
+      </Row>
+
         <br></br>
         <Row>
-      <Card>
-        <CardBody body className="text-center">
+        <Col sm="10" md={{ size: 6, offset: 3 }}>
+        <Card body className="text-center">
         <VictoryPie
           padAngle={({ datum }) => datum.y}
           colorScale={["tomato", "orange", "gold", "cyan", "navy" ]}
@@ -69,15 +80,15 @@ export default class Statistics extends Component {
             { x: "men", y: this.state.men  }
           ]}
         />
-          <CardTitle tag="h5" centered>TreeName</CardTitle>
-          <CardText centered>female | male</CardText>
-        </CardBody>
-        </Card>
+          <CardTitle tag="h4" centered>Family Tree</CardTitle>
+          <CardText centered>{this.state.women} female | {this.state.men} male</CardText>
+          </Card>
+        </Col>
         </Row>
 
       <br></br>
-      <h2>{this.state.women} are female</h2>
-      <h2>{this.state.men} are male</h2>
+      <h2>{this.state.women} Female</h2>
+      <h2>{this.state.men} Male</h2>
       </Container>
 
       </div>

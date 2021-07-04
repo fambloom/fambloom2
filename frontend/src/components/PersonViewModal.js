@@ -37,7 +37,6 @@ export default class PersonViewModal extends Component {
     this.setState({ activeItem });
   };
 
-  
   editItem = (item) => {
     this.setState({ activeItem: item, modal: !this.state.modal });
   };
@@ -49,13 +48,7 @@ export default class PersonViewModal extends Component {
       gender: "",
       bio: "",
       birthPlace: "",
-      parents: "",
-      spouse: "",
-      siblings: "",
-      children: "",
     };
-
-    this.setState({ activeItem: item, modal: !this.state.modal });
   };
 
   handleSubmit = (item) => {
@@ -63,20 +56,94 @@ export default class PersonViewModal extends Component {
 
     if (item.id) {
       axios
-        .put(`/api/persondetail/${item.id}/`, item, )
+        .put(`/api/person/${item.id}/`, item, )
         .then((res) => this.refreshList());
       return;
     }
 
     axios
-      .post(`/api/persondetail/${item.id}/`, item, )
+      .post(`/api/person/`, item, )
       .then((res) => {console.log(res.data); this.refreshList(); })
       .catch(err => { console.log(err) });
   };
 
+  
+  handleAddParents = (item) => {
+    let personAID = item.id;
+    console.log(item.id);
+    const newItem = {
+     firstName: "",
+     lastName: "",
+     gender: "",
+     bio: "",
+     birthPlace: "",
+     parents: [],
+     children: [personAID],
+     spouses: [],
+     siblings: [],
+   };
+   this.setState({ activeItem: newItem, modal: !this.state.modal });
+
+   const res = axios.patch('/api/person/' + personAID + '/', { parents: [newItem.id] });
+  };
+
+ handleAddChildren = (item) => {
+  let personAID = item.id;
+  console.log(item.id);
+  const newItem = {
+   firstName: "",
+   lastName: "",
+   gender: "",
+   bio: "",
+   birthPlace: "",
+   parents: [personAID],
+   children: [],
+   spouses: [],
+   siblings: [],
+ };
+ this.setState({ activeItem: newItem, modal: !this.state.modal });
+
+ const res = axios.patch('/api/person/' + personAID + '/', { children: [newItem.id] });
+};
+ 
+ handleAddSiblings= (item) => {
+  let personAID = item.id;
+  console.log(item.id);
+  const newItem = {
+   firstName: "",
+   lastName: "",
+   gender: "",
+   bio: "",
+   birthPlace: "",
+   parents: [],
+   children: [],
+   spouses: [],
+   siblings: [personAID],
+ };
+ this.setState({ activeItem: newItem, modal: !this.state.modal });
+};
+
+handleAddSpouses= (item) => {
+  let personAID = item.id;
+  console.log(item.id);
+  const newItem = {
+   firstName: "",
+   lastName: "",
+   gender: "",
+   bio: "",
+   birthPlace: "",
+   parents: [],
+   children: [],
+   spouses: [personAID],
+   siblings: [],
+ };
+ this.setState({ activeItem: newItem, modal: !this.state.modal });
+};
+
+
   handleDelete = (item) => {
     axios
-      .delete(`/api/persondetail/${item.id}/`)
+      .delete(`/api/person/${item.id}/`)
       .then((res) => this.refreshList());
   };
 
@@ -98,10 +165,10 @@ export default class PersonViewModal extends Component {
     if (personDetail.parents && personDetail.parents.length > 0) {
       parents = personDetail.parents.map( (p) => { 
         return (<div><li> {p.firstName} {p.lastName}</li>      
-        <button className="btn btn-secondary mr-2" onClick={() => this.editItem(this.props.activeItem)}>
+        <button className="btn btn-secondary mr-2" onClick={() => this.editItem(p)}>
         Edit 
       </button>
-      <button className="btn btn-danger" onClick={() => this.handleDelete(this.props.activeItem)}>
+      <button className="btn btn-danger" onClick={() => this.handleDelete(p)}>
         Delete
       </button>
       </div>
@@ -109,7 +176,7 @@ export default class PersonViewModal extends Component {
     } else {
         parents = nullMessage.map( (nullMessage) => { 
             return (<div><p>{nullMessage}</p>         
-        <button className="btn btn-secondary mr-2" onClick={() => this.editItem(this.props.activeItem)}>
+        <button className="btn btn-secondary mr-2" onClick={() => this.handleAddParents(this.props.activeItem)}>
             Add 
         </button>
         </div>
@@ -130,7 +197,7 @@ export default class PersonViewModal extends Component {
     } else {
         spouses = nullMessage.map((nullMessage) => { 
             return (<div><p>{nullMessage}</p>         
-          <button className="btn btn-secondary mr-2" onClick={() => this.editItem(this.props.activeItem)}>
+          <button className="btn btn-secondary mr-2" onClick={() => this.handleAddSpouses(this.props.activeItem)}>
             Add 
           </button>
         </div>
@@ -153,7 +220,7 @@ export default class PersonViewModal extends Component {
     } else {
         children = nullMessage.map( (nullMessage) => { 
         return (<div><p>{nullMessage}</p>         
-            <button className="btn btn-secondary mr-2" onClick={() => this.editItem(this.props.activeItem)}>
+            <button className="btn btn-secondary mr-2" onClick={() => this.handleAddChildren(this.props.activeItem)}>
                 Add 
             </button>
             </div>
@@ -176,7 +243,7 @@ export default class PersonViewModal extends Component {
     } else {
         siblings = nullMessage.map( (nullMessage) => { 
         return (<div><p>{nullMessage}</p>         
-            <button className="btn btn-secondary mr-2" onClick={() => this.editItem(this.props.activeItem)}>
+            <button className="btn btn-secondary mr-2" onClick={() => this.handleAddSiblings(this.props.activeItem)}>
                 Add 
             </button>
             </div>

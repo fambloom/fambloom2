@@ -13,6 +13,9 @@ export default class CustomModal extends Component {
 
   handleChange = (e) => {
     let { name, value } = e.target;
+    if (name == "gender") {
+      value = value.toLowerCase();
+    }
     const activeItem = { ...this.state.activeItem, [name]: value };
 
     this.setState({ activeItem });
@@ -48,7 +51,7 @@ export default class CustomModal extends Component {
                 placeholder="Enter last name"
               />
             </FormGroup>
-            {/*<FormGroup>
+            <FormGroup>
               <Label for="gender">Gender</Label>
                 <Input 
                   type="text" 
@@ -58,8 +61,8 @@ export default class CustomModal extends Component {
                   onChange={this.handleChange}
                   placeholder="Enter gender">
                 </Input>
-            </FormGroup> */}
-            <FormGroup>
+            </FormGroup>
+          {/*   <FormGroup>
               <Label for="gender">Gender</Label>
                 <Input type="select" id="gender" name="gender"
                   value={this.state.activeItem.gender}
@@ -69,7 +72,7 @@ export default class CustomModal extends Component {
                   <option>male</option>
                   <option>other</option>
                 </Input>
-            </FormGroup> 
+            </FormGroup> */}
             <FormGroup>
               <Label for="bio">Biography</Label>
               <Input

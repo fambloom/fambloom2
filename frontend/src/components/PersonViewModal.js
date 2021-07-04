@@ -69,7 +69,7 @@ export default class PersonViewModal extends Component {
     }
 
     axios
-      .post(`/api/persondetail/${item.id}/`, item, )
+      .post(`/api/persondetail/`, item, )
       .then((res) => {console.log(res.data); this.refreshList(); })
       .catch(err => { console.log(err) });
   };
@@ -109,7 +109,7 @@ export default class PersonViewModal extends Component {
     } else {
         parents = nullMessage.map( (nullMessage) => { 
             return (<div><p>{nullMessage}</p>         
-        <button className="btn btn-secondary mr-2" onClick={() => this.editItem(this.props.activeItem)}>
+        <button className="btn btn-secondary mr-2" onClick={this.createItem}>
             Add 
         </button>
         </div>
@@ -130,7 +130,7 @@ export default class PersonViewModal extends Component {
     } else {
         spouses = nullMessage.map((nullMessage) => { 
             return (<div><p>{nullMessage}</p>         
-          <button className="btn btn-secondary mr-2" onClick={() => this.editItem(this.props.activeItem)}>
+          <button className="btn btn-secondary mr-2" onClick={this.createItem}>
             Add 
           </button>
         </div>
@@ -151,9 +151,9 @@ export default class PersonViewModal extends Component {
         )
       })
     } else {
-        children = nullMessage.map( (nullMessage) => { 
+        children = nullMessage.map((nullMessage) => { 
         return (<div><p>{nullMessage}</p>         
-            <button className="btn btn-secondary mr-2" onClick={() => this.editItem(this.props.activeItem)}>
+            <button className="btn btn-secondary mr-2" onClick={this.createItem}>
                 Add 
             </button>
             </div>
@@ -167,7 +167,7 @@ export default class PersonViewModal extends Component {
             <button className="btn btn-secondary mr-2" onClick={() => this.editItem(this.props.activeItem)}>
               Edit 
             </button>
-            <button className="btn btn-danger" onClick={() => this.handleDelete(this.props.activeItem)}>
+            <button className="btn btn-danger" onClick={this.createItem}>
               Delete
             </button>
             </div>
@@ -176,7 +176,7 @@ export default class PersonViewModal extends Component {
     } else {
         siblings = nullMessage.map( (nullMessage) => { 
         return (<div><p>{nullMessage}</p>         
-            <button className="btn btn-secondary mr-2" onClick={() => this.editItem(this.props.activeItem)}>
+            <button className="btn btn-secondary mr-2" onClick={this.createItem}>
                 Add 
             </button>
             </div>
@@ -187,7 +187,6 @@ export default class PersonViewModal extends Component {
       <Label for="parents">Parents:</Label>
         {parents}
        <hr/>
-
 
        <Label for="children">Children:</Label>
        {children}
@@ -204,6 +203,7 @@ export default class PersonViewModal extends Component {
   // takes array of parent/spouse/child IDs and iterates through tree
     // findPerson(inputObject, personArray) {
     //     let persons = [];
+    //     const keys = Object.keys(inputObject);
     //     for (let i = 0; i < keys; i+=1) {
     //             if(personArray[0] || personArray[1] == inputObject[i].id) {
     //                 persons.push(inputObject[i].firstName);
@@ -257,7 +257,7 @@ export default class PersonViewModal extends Component {
             onSave={this.handleSubmit}
           />
         ) : null}
-          <Button color="success" onClick={toggle}>
+          <Button color="success">
             Exit
           </Button>
         </ModalFooter>

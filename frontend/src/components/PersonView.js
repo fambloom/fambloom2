@@ -29,6 +29,11 @@ class PersonView extends Component {
     this.refreshList();
   }
 
+  refreshPage() {
+    window.location.reload(false);
+  }
+
+
   refreshList = () => {
     axios
       .get(`/api/person/`)
@@ -70,10 +75,10 @@ class PersonView extends Component {
       gender: "",
       bio: "",
       birthPlace: "",
-      parents: "",
-      spouse: "",
-      siblings: "",
-      children: "",
+      parents: [],
+      spouse: [],
+      siblings: [],
+      children: [],
     };
 
     this.setState({ activeItem: item, modal: !this.state.modal });

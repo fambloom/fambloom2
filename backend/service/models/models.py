@@ -7,8 +7,10 @@ import string
 
 
 class Tree(models.Model):
-    code = get_random_string(10, allowed_chars=string.ascii_uppercase + string.digits)
-    treeCode = models.CharField(max_length=11, primary_key=True)
+    def pkgen():
+        code = get_random_string(10, allowed_chars=string.ascii_uppercase + string.digits)
+        return code
+    treeCode = models.CharField(max_length=11, primary_key=True, default=pkgen)
     treeName = models.CharField(max_length=120)
     password = models.CharField(max_length=64, blank=True, null=True)
     description = models.TextField(blank=True, null=True)

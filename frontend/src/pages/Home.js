@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { Container, Row, Col } from "reactstrap";
 import { Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button, FormGroup, Label, Input
@@ -12,6 +12,9 @@ export default class Home extends Component {
     super(props);
     this.state = {
       trees: [],
+      activeItem: {
+        treeName: '',
+      }
     };
   }
 
@@ -26,7 +29,41 @@ export default class Home extends Component {
       .catch((err) => console.log(err));
   };
 
-  
+  refreshPage() {
+    window.location.reload(false);
+  }
+
+  handleSubmit = (item1) => {
+    const item = {
+      treeName: item1,
+      // pas sword: "",
+      // description: "",
+      // image: "",
+    };
+
+    if (item.treeCode) {
+      axios
+        .put(`/api/tree/${item.treeCode}/`, item, )
+      return;
+    }
+
+    axios
+      .post(`/api/tree/`, item, )
+      .then((res) => {console.log(res.data); this.refreshList(); })
+      .catch(err => { console.log(err) });
+      
+
+    
+  };
+
+  handleChange = (e) => {
+    let { name, value } = e.target;
+    const activeItem = { ...this.state.activeItem, [name]: value };
+
+    this.setState({ activeItem });
+  };
+
+
   renderItems = () => {
     const newItems = this.state.trees
     return newItems.map((item) => (
@@ -92,37 +129,7 @@ export default class Home extends Component {
       </Row>
       <br></br>
 
-      <Row>
-      <Col sm="4">
-      <Card>
-        <CardBody body className="text-center">
-          <CardTitle tag="h5" centered>TreeName</CardTitle>
-          <CardText centered>number of members</CardText>
-          <Button centered outline color="secondary">Go to Tree</Button>
-        </CardBody>
-      </Card>
-      </Col>
-      <Col sm="4">
-      <Card>
-        <CardBody body className="text-center">
-          <CardTitle tag="h5" centered>TreeName</CardTitle>
-          <CardText centered>number of members</CardText>
-          <Button centered outline color="secondary">Go to Tree</Button>
-        </CardBody>
-      </Card>
-      </Col>
-      <Col sm="4">
-      <Card>
-        <CardBody body className="text-center">
-          <CardTitle tag="h5" centered>TreeName</CardTitle>
-          <CardText centered>number of members</CardText>
-          <Button centered outline color="secondary">Go to Tree</Button>
-        </CardBody>
-      </Card>
-      </Col>
-      </Row>
-
-      <br></br>
+      
       <br></br>
       <br></br>
       <br></br>
@@ -142,14 +149,14 @@ export default class Home extends Component {
     <CardTitle tag="h5" centered>a new family tree</CardTitle>
     <FormGroup>
         <Label for="treeName" hidden>Tree Name</Label>
-        <Input type="treeName" name="treeName" id="treeName" placeholder="Tree Name" />
+        <Input type="treeName" name="treeName" id="treeName" onChange={this.handleChange} value={this.state.activeItem.treeName} placeholder="Tree Name" />
       </FormGroup>
-      <FormGroup>
+      {/* <FormGroup>
         <Label for="treepassword" hidden>Tree Password</Label>
-        <Input type="treepassword" name="treepassword" id="treepassword" placeholder="Tree Password" />
-      </FormGroup>
+        <Input type="treepassword" name="treepassword" id="treepassword" onChange={this.handleChange} value={this.state.activeItem.password} placeholder="Tree Password" />
+      </FormGroup> */}
     <CardText centered></CardText>
-    <Button centered outline color="secondary">Submit</Button>
+    <Button centered outline color="secondary" onClick={() => {this.handleSubmit(this.state.activeItem.treeName); this.refreshPage();}}>Submit</Button>
   </CardBody>
 </Card>
 </Col>

@@ -15,35 +15,19 @@ export default class TreeView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      newPeopleList2: [],
-      peopleList2: [],
-      modal: false,
-      activeItem: {
-        "id": 0,
-        "firstName": "",
-        "lastName": "",
-        "gender": "",
-        "tree": "",
-        "parents": [],
-        "siblings": [],
-        "spouses": [],
-        "children": [],
-        "bio": "",
-        "birthDate": null,
-        "birthPlace": null,
-        "image": null
-      },
+      newPeopleList: this.props.newPeopleList,
+
     };
   }
 
   
   rendermyTree = () => {
-    if (this.props.newPeopleList.length == 0){
+    if (this.state.newPeopleList.length == 0){
       return (<h3>empty tree</h3>)
     } else {
       return (
         <ReactFamilyTree
-        nodes={this.props.newPeopleList}
+        nodes={this.state.newPeopleList}
         rootId={'1'}
         width={WIDTH}
         height={HEIGHT}

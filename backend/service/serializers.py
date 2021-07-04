@@ -20,12 +20,20 @@ class PersonDetailSerializer(serializers.ModelSerializer):
         'tree', 'parents', 'siblings', 'spouses', 'children',
         'bio', 'birthDate', 'birthPlace', 'image')
 
+
+# class PersonIDSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Person
+#         fields = ('id')
+
 class PersonSerializer(serializers.ModelSerializer):
+  
     class Meta:
         model = Person
         fields = ('id', 'firstName', 'lastName', 'gender', 
         'tree', 'parents', 'siblings', 'spouses', 'children',
         'bio', 'birthDate', 'birthPlace', 'image')
+
 
 class TreeDetailSerializer(serializers.ModelSerializer):
     people = PersonSerializer(many=True, allow_null=True, required=False)

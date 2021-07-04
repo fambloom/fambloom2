@@ -104,17 +104,15 @@ export default class Home extends Component {
         <br></br>
 
       <Container style={{flex:1, justifyContent: "center", alignItems: "center"}}>
-      
-      <Row>
-        <Col xs="6" md={{ size: 4, offset: 3 }}>
-          <img width="25%" src="https://cdn.discordapp.com/attachments/854112992025903142/859693896300232724/left-icon.png" alt="Icon" />
-        </Col>
-        <Col xs="6" md={{ size: 4, offset: 4 }}>
+
+
+
+
+
+      <Row style={{flex:1, justifyContent: "center", alignItems: "center"}}>
+          <img width="60px" src="https://cdn.discordapp.com/attachments/854112992025903142/859693896300232724/left-icon.png" alt="Icon" />
           <h3 body className="text-center">List of Public Trees</h3>
-        </Col>
-        <Col xs="6" md={{ size: 4, offset: 8 }}>
-          <img width="25%" src="https://cdn.discordapp.com/attachments/854112992025903142/859693897420636190/right-icon.png" alt="Icon" />
-        </Col>      
+          <img width="60px" src="https://cdn.discordapp.com/attachments/854112992025903142/859693897420636190/right-icon.png" alt="Icon" />
       </Row>
 
       <br></br>

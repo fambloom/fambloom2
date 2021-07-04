@@ -53,17 +53,17 @@ export default class PersonViewModal extends Component {
 
   handleSubmit = (item, newItem) => {
     this.toggle();
-    let parentID = null;
+   
     if (this.state.relationship == "parents") {
       
       axios.post(`/api/person/`, newItem, )
-      .then((res) => { parentID = res.data.id;
+      .then((res) => { 
 
         console.log("PARENT RES DATA:");
         console.log(res.data);
         this.setState({ newItem: res.data });
       }).catch(err => { console.log(err) });
-
+// need to fix
       axios.patch(`/api/person/${item.id}/`, { parents: [this.state.newItem.id] })
       .then((res) => {console.log(res.data); this.refreshList(); })
       .catch(err => { console.log(err) });;
@@ -71,11 +71,11 @@ export default class PersonViewModal extends Component {
       return;
     }
 
-    if (item.id) { // need to fix edit button
+    if (newItem.id) { // need to fix edit button
       // axios
       //   .put(`/api/person/${item.id}/`, item, )
       //   .then((res) => this.refreshList());
-      // return;
+      return;
     } else {
       axios
       .post(`/api/person/`, newItem, )
@@ -87,7 +87,7 @@ export default class PersonViewModal extends Component {
 
   
   handleAddParents = (item) => {
-    
+    this.toggle();
     let personAID = item.id;
     console.log(item.id);
     const newItem = {
@@ -107,6 +107,7 @@ export default class PersonViewModal extends Component {
   };
 
  handleAddChildren = (item) => {
+  this.toggle();
   let personAID = item.id;
   console.log(item.id);
   const newItem = {
@@ -120,11 +121,12 @@ export default class PersonViewModal extends Component {
    spouses: [],
    siblings: [],
  };
- this.setState({ activeItem: newItem, modal: !this.state.modal });
+ this.setState({ activeItem: item, newItem: newItem, modal: !this.state.modal });
 
 };
  
  handleAddSiblings= (item) => {
+  this.toggle();
   let personAID = item.id;
 
   const newItem = {
@@ -139,10 +141,11 @@ export default class PersonViewModal extends Component {
    siblings: [personAID],
  };
 
- this.setState({ activeItem: newItem, modal: !this.state.modal });
+ this.setState({ activeItem: item, newItem: newItem, modal: !this.state.modal });
 };
 
 handleAddSpouses= (item) => {
+  this.toggle();
   let personAID = item.id;
   console.log(item.id);
   const newItem = {
@@ -156,11 +159,12 @@ handleAddSpouses= (item) => {
    spouses: [personAID],
    siblings: [],
  };
- this.setState({ activeItem: newItem, modal: !this.state.modal });
+ this.setState({ activeItem: item, newItem: newItem, modal: !this.state.modal });
 };
 
 
   handleDelete = (item) => {
+    
     axios
       .delete(`/api/person/${item.id}/`)
       .then((res) => this.refreshList());
@@ -184,9 +188,9 @@ handleAddSpouses= (item) => {
     if (personDetail.parents && personDetail.parents.length > 0) {
       parents = personDetail.parents.map( (p) => { 
         return (<div><li> {p.firstName} {p.lastName}</li>      
-        <button className="btn btn-secondary mr-2" onClick={() => this.editItem(p)}>
+        {/* <button className="btn btn-secondary mr-2" onClick={() => this.editItem(p)}>
         Edit 
-      </button>
+      </button> */}
       <button className="btn btn-danger" onClick={() => this.handleDelete(p)}>
         Delete
       </button>
@@ -205,9 +209,9 @@ handleAddSpouses= (item) => {
     if (personDetail.spouses && personDetail.spouses.length > 0) {
       spouses = personDetail.spouses.map( (p) => { 
         return (<div><li> {p.firstName} {p.lastName}</li>
-            <button className="btn btn-secondary mr-2" onClick={() => this.editItem(this.props.activeItem)}>
+            {/* <button className="btn btn-secondary mr-2" onClick={() => this.editItem(this.props.activeItem)}>
             Edit 
-          </button>
+          </button> */}
           <button className="btn btn-danger" onClick={() => this.handleDelete(this.props.activeItem)}>
             Delete
           </button>
@@ -227,9 +231,9 @@ handleAddSpouses= (item) => {
     if (personDetail.children && personDetail.children.length > 0) {
       children = personDetail.children.map( (p) => { 
         return (<div><li> {p.firstName} {p.lastName}</li>
-            <button className="btn btn-secondary mr-2" onClick={() => this.editItem(this.props.activeItem)}>
+            {/* <button className="btn btn-secondary mr-2" onClick={() => this.editItem(this.props.activeItem)}>
             Edit 
-          </button>
+          </button> */}
           <button className="btn btn-danger" onClick={() => this.handleDelete(this.props.activeItem)}>
             Delete
           </button>
@@ -250,9 +254,9 @@ handleAddSpouses= (item) => {
     if (personDetail.siblings && personDetail.siblings.length > 0) {
       siblings = personDetail.siblings.map( (p) => { 
         return (<div><li> {p.firstName} {p.lastName}</li>
-            <button className="btn btn-secondary mr-2" onClick={() => this.editItem(this.props.activeItem)}>
+            {/* <button className="btn btn-secondary mr-2" onClick={() => this.editItem(this.props.activeItem)}>
               Edit 
-            </button>
+            </button> */}
             <button className="btn btn-danger" onClick={this.createItem}>
               Delete
             </button>
@@ -302,7 +306,7 @@ handleAddSpouses= (item) => {
     //     }
 
   render() {
-    const { toggle, onSave, onParentSave } = this.props;
+    const { toggle } = this.props;
 
     return ( <div>
       <Modal isOpen={true} toggle={toggle}>
@@ -321,21 +325,7 @@ handleAddSpouses= (item) => {
               <hr/>
               {this.printRelatives(this.state.personDetail)}
 
-              {/* <Label for="parents">Parents:</Label>
-             {this.familyMemberReformatTest(this.state.personDetail)}
-             
-              <hr/>
-
-              <Label for="children">Children:</Label>
-              {this.familyMemberReformatTest(this.state.personDetail)}
-
-              <hr/>
-              <Label for="spouses">Spouses:</Label>
-              {this.familyMemberReformatTest(this.state.personDetail)}
-
-              <hr/>
-              <Label for="firstName">Siblings:</Label>
-              {this.familyMemberReformatTest(this.state.personDetail)} */}
+            
             
         </ModalBody>
         <ModalFooter>
@@ -348,6 +338,7 @@ handleAddSpouses= (item) => {
           />
         ) : null}
           <Button color="success">
+
             Exit
           </Button>
         </ModalFooter>

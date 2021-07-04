@@ -6,16 +6,18 @@ from django.utils.crypto import get_random_string
 import string
 
 
+
 class Tree(models.Model):
-    def pkgen():
-        code = get_random_string(10, allowed_chars=string.ascii_uppercase + string.digits)
-        return code
-    treeCode = models.CharField(max_length=11, primary_key=True, default=pkgen)
+    treeCode = models.CharField(max_length=12, primary_key=True, blank=True, editable=True)
     treeName = models.CharField(max_length=120)
     password = models.CharField(max_length=64, blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     image = models.CharField(max_length=200, blank=True, null=True)
 
+    def save(self, *args, **kwargs):
+        if not self.treeCode:
+            self.treeCode = get_random_string(11, allowed_chars=string.ascii_uppercase + string.digits)
+        return super(Tree, self).save(*args, **kwargs)
 
 class Person(models.Model):
     # essentials

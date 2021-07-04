@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Card, CardBody, CardTitle, CardSubtitle } from "reactstrap";
+import { Card, CardBody, CardTitle, CardSubtitle, Container } from "reactstrap";
 import '../App.css';
 
 // dont forget to import stuff from reactstrap when u use them
@@ -31,14 +31,15 @@ export default class FamilyNode extends Component {
 
   render() {
     return (
-      <div>
+      <Container>
       <Card>
         <CardBody>
         <CardTitle tag="h5">{this.getFirstName()}</CardTitle>
         <CardSubtitle tag="h6" className="mb-2 text-muted">{this.getLastName()}</CardSubtitle>
         </CardBody>
       </Card>
-      </div>
+      </Container>
+     
     );
   }
 

@@ -16,6 +16,22 @@ export default class TreeView extends Component {
     this.state = {
       newPeopleList: [],
       peopleList: [],
+      modal: false,
+      activeItem: {
+        "id": 0,
+        "firstName": "",
+        "lastName": "",
+        "gender": "",
+        "tree": "",
+        "parents": [],
+        "siblings": [],
+        "spouses": [],
+        "children": [],
+        "bio": "",
+        "birthDate": null,
+        "birthPlace": null,
+        "image": null
+      },
     };
   }
 
@@ -25,12 +41,12 @@ export default class TreeView extends Component {
 
   refreshList = () => {
     axios
-      .get(`/api/treedetail/A`)
+      .get(`/api/treedetail/A/`)
       .then((res) => {
         this.setState((state, props) => ( {newPeopleList: tools.objectReformat(res.data.people)} ) );   
         console.log("new items here");
         console.log(this.state.newPeopleList);
-      }) 
+      })
       .catch((err) => console.log(err));
   };
 

@@ -56,9 +56,10 @@ export default class Statistics extends Component {
         <Row>
       <Card>
         <CardBody body className="text-center">
-        {this.state.women && <PieChart lineWidth={50} label={({ dataEntry }) => dataEntry.title}
-          data={[{ title: "women", value: this.state.women,  color: '#E38627' },
-            { title: "men", value: this.state.men,  color: '#C13C37'   }]}
+        {this.state.women && 
+        <PieChart lineWidth={50} label={({ dataEntry }) => dataEntry.title}
+          data={[{ title: "women", value: this.state.women,  color: '#e995fc' },
+            { title: "men", value: this.state.men,  color: '#67d0f0'   }]}
         /> }
           <CardTitle tag="h5" centered>Total Statistics</CardTitle>
         </CardBody>

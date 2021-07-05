@@ -4,16 +4,19 @@ import {
 } from "reactstrap";
 import axios from "axios";
 import AddPersonViewModal from './AddModal';
+import BioModal from "./Modal";
 
 export default class PersonViewModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
       modal: false,
+      bioModal: false,
       activeItem: this.props.activeItem,
       newItem: {},
       personDetail: [],
-      relationship: ""
+      relationship: "",
+      treeCode: this.props.treeCode,
     };
   }
 
@@ -29,6 +32,15 @@ export default class PersonViewModal extends Component {
       .catch((err) => console.log(err));
   };
 
+  
+  refreshList1 = () => {
+    axios
+      .get(`/api/person/`)
+      .then((res) => this.setState({ peopleList: res.data }))
+      .catch((err) => console.log(err));
+  };
+
+
   // refreshList2 = () => {
   //   axios
   //     .get(`/api/persondetail/${this.state.newActiveItem.id}/`)
@@ -39,6 +51,10 @@ export default class PersonViewModal extends Component {
   toggle = () => {
     this.setState({ modal: !this.state.modal });
   };
+  
+  toggle1 = () => {
+    this.setState({ bioModal: !this.state.bioModal });
+  };
 
   handleChange = (e) => {
     let { name, value } = e.target;
@@ -48,7 +64,7 @@ export default class PersonViewModal extends Component {
   };
 
   editItem = (item) => {
-    this.setState({ activeItem: item, modal: !this.state.modal });
+    this.setState({ activeItem: item, bioModal: !this.state.bioModal });
   };
 
   refreshPage() {
@@ -89,7 +105,26 @@ export default class PersonViewModal extends Component {
 
   };
 
-  
+    
+  handleSubmit1 = (item) => {
+    this.toggle1();
+
+    if (item.id) {
+      axios
+        .put(`/api/person/${item.id}/`, item, )
+        .then((res) => this.refreshList1());
+      return;
+    }
+
+    axios
+      .post(`/api/person/`, item, )
+      .then((res) => {console.log(res.data); this.refreshList1(); })
+      .catch(err => { console.log(err) });
+
+    this.refreshPage();
+  };
+
+
   handleAddParents = (item) => {
     let personAID = item.id;
     console.log(item.id);
@@ -199,7 +234,7 @@ handleAddSpouses= (item) => {
     } else {
         parents = nullMessage.map( (nullMessage) => { 
             return (<div><p>{nullMessage}</p>         
-        <button className="btn btn-secondary mr-2" onClick={() => this.handleAddParents(this.props.activeItem)}>
+        <button className="btn btn-secondary mr-2" disabled onClick={() => this.handleAddParents(this.props.activeItem)}>
             Add 
         </button>
         </div>
@@ -243,7 +278,7 @@ handleAddSpouses= (item) => {
     } else {
         children = nullMessage.map((nullMessage) => { 
         return (<div><p>{nullMessage}</p>         
-            <button className="btn btn-secondary mr-2" onClick={() => this.handleAddChildren(this.props.activeItem)}>
+            <button className="btn btn-secondary mr-2" disabled onClick={() => this.handleAddChildren(this.props.activeItem)}>
                 Add 
             </button>
             </div>
@@ -303,7 +338,7 @@ handleAddSpouses= (item) => {
     //     }
 
   render() {
-    const { toggle } = this.props;
+    const { toggle, toggle1 } = this.props;
     return ( <div>
       <Modal onExit={this.refreshPage} isOpen={true} toggle={toggle}>
         <ModalHeader toggle={toggle}>{this.props.activeItem.firstName} {this.props.activeItem.lastName}</ModalHeader>
@@ -325,6 +360,13 @@ handleAddSpouses= (item) => {
             newItem={this.state.newItem}
             toggle={this.toggle}
             onSave={this.handleSubmit}
+          />
+        ) : null}
+        {this.state.bioModal ? (
+          <BioModal
+            activeItem={this.state.activeItem}
+            toggle={this.toggle1}
+            onSave={this.handleSubmit1}
           />
         ) : null}
           <Button color="success" onClick={toggle}>

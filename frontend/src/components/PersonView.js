@@ -127,7 +127,9 @@ class PersonView extends Component {
 
   renderItems = () => {
     const newItems = this.state.peopleList
-    return newItems.map((item) => (
+
+    // MIRABELA EDIT HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE FOR TREECODE
+    return newItems.filter(item => item.tree == 'A').map((item) => (
       <li
         key={item.id}
         className="list-group-item d-flex justify-content-between align-items-center"
@@ -150,7 +152,7 @@ class PersonView extends Component {
     return (
       <main className="container">
         
-        <h1 className=" text-uppercase text-center my-4">Fambloom app</h1>
+        <h1 className=" text-uppercase text-center my-4">Fambloom App</h1>
         <div className="row">
           <div className="col-md-6 col-sm-10 mx-auto p-0">
             <div className="card p-3">

@@ -36,10 +36,7 @@ const NavigationBar = (props) => {
               <NavLink exact href="/statistics">Statistics</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink exact href="/treeview">TreeView</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink exact href="/personview">PersonView</NavLink>
+              <NavLink exact href="/persontreeview">Person View</NavLink>
             </NavItem>
             <NavItem className="ml-auto">
               <NavLink exact href="/">Home</NavLink>

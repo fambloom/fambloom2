@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Input, Label } from "reactstrap";
 import axios from "axios";
 import PersonViewModal from './PersonViewModal';
-
+import AddModal from './Modal';
 
 class PersonView extends Component {
   
@@ -10,6 +10,7 @@ class PersonView extends Component {
     super(props);
     this.state = {
       peopleList: [],
+      addmodal: false,
       modal: false,
       activeItem: {
         firstName: "",
@@ -33,7 +34,6 @@ class PersonView extends Component {
     window.location.reload(false);
   }
 
-
   refreshList = () => {
     axios
       .get(`/api/person/`)
@@ -43,6 +43,26 @@ class PersonView extends Component {
 
   toggle = () => {
     this.setState({ modal: !this.state.modal });
+  };
+
+  toggle1 = () => {
+    this.setState({ addModal: !this.state.addModal });
+  };
+
+  handleSubmit1 = (item) => {
+    this.toggle1();
+
+    if (item.id) {
+      axios
+        .put(`/api/person/${item.id}/`, item, )
+        .then((res) => this.refreshList());
+      return;
+    }
+
+    axios
+      .post(`/api/person/`, item, )
+      .then((res) => {console.log(res.data); this.refreshList(); })
+      .catch(err => { console.log(err) });
   };
 
   
@@ -84,6 +104,23 @@ class PersonView extends Component {
     this.setState({ activeItem: item, modal: !this.state.modal });
   };
 
+  addItem = () => {
+    const item = {
+      firstName: "",
+      lastName: "",
+      gender: "",
+      bio: "",
+      birthPlace: "",
+      parents: [],
+      spouse: [],
+      siblings: [],
+      children: [],
+    };
+
+    this.setState({ activeItem: item, addModal: !this.state.addModal });
+  };
+
+
   editItem = (item) => {
     this.setState({ activeItem: item, modal: !this.state.modal });
   };
@@ -112,10 +149,14 @@ class PersonView extends Component {
   render() {
     return (
       <main className="container">
+        
         <h1 className=" text-uppercase text-center my-4">Fambloom app</h1>
         <div className="row">
           <div className="col-md-6 col-sm-10 mx-auto p-0">
             <div className="card p-3">
+            <button className="btn btn-primary mx-auto" onClick={this.addItem}>
+                  Add Person
+                </button>
               <ul className="list-group list-group-flush border-top-0">
                 {this.renderItems()}
               </ul>
@@ -127,6 +168,13 @@ class PersonView extends Component {
             activeItem={this.state.activeItem}
             toggle={this.toggle}
             onSave={this.handleSubmit}
+          />
+        ) : null}
+         {this.state.addModal ? (
+          <AddModal
+            activeItem={this.state.activeItem}
+            toggle={this.toggle1}
+            onSave={this.handleSubmit1}
           />
         ) : null}
       </main>

@@ -56,17 +56,17 @@ export default class CustomModal extends Component {
                 placeholder="Enter last name"
               />
             </FormGroup>
-            <FormGroup>
-              <Label for="gender">Gender</Label>
+            <FormGroup check inline className="mb-2">
+              <Label className="mr-3" for="gender"check >Gender</Label><br></br>
                 <Input type="radio" id="gender" name="gender"
                   value="male"
                   onChange={this.handleChange}
-                  placeholder="Enter gender"> Male  </Input>
-               <Input type="radio" id="gender" name="gender"
+                  placeholder="Enter gender"/> {'  '}Male <br></br>
+               <Input className="ml-2" type="radio" id="gender" name="gender"
                   value="female"
                   onChange={this.handleChange}
-                  placeholder="Enter gender"> Female  </Input>
-            </FormGroup> 
+                  placeholder="Enter gender"/> {'  '} Female
+            </FormGroup>  
             <FormGroup>
               <Label for="bio">Biography</Label>
               <Input

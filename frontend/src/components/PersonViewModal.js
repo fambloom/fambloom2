@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {
+import { Container, Row, Col,
   Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Input, Label, NavItem,
 } from "reactstrap";
 import axios from "axios";
@@ -311,29 +311,49 @@ handleAddSpouses= (item) => {
     )
   }
 
-  // takes array of parent/spouse/child IDs and iterates through tree
-    // findPerson(inputObject, personArray) {
-    //     let persons = [];
-    //     const keys = Object.keys(inputObject);
-    //     for (let i = 0; i < keys; i+=1) {
-    //             if(personArray[0] || personArray[1] == inputObject[i].id) {
-    //                 persons.push(inputObject[i].firstName);
-    //             } 
-    //         }
-    //     return persons.map((person) => <li>{person}</li>)
-    //     }
+  renderImage = (item) => {
+    let gen = item.gender;
+    if (gen=="female") {
+      return (
+        <div>
+        <img width="100%" src="https://media.discordapp.net/attachments/854112992025903142/861662921847341056/female-icon.png" />
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <img width="100%" src="https://media.discordapp.net/attachments/854112992025903142/861662923961139230/male-icon.png" />
+        </div>
+      );
+    }
+  }
 
   render() {
     const { toggle, toggle1 } = this.props;
+
     return ( <div>
       <Modal onExit={this.refreshPage} isOpen={true} toggle={toggle}>
         <ModalHeader toggle={toggle}>{this.props.activeItem.firstName} {this.props.activeItem.lastName}</ModalHeader>
         <ModalBody>
+          <Container>
+            <Row>
+              <Col className="col-sm-4">
+                {this.renderImage(this.props.activeItem)}
+              </Col>
+              <Col className="col-sm-8 biography">
+                
+                  <div>
               <Label for="birthPlace">Birth Place:</Label>
-              <span className="ml-1">{this.props.activeItem.birthPlace}</span>  <br></br>
+              <span className="ml-1">{this.props.activeItem.birthPlace}</span>
+              </div>
+              <div>
               <Label for="Biography:">Biography:</Label>
               <span className="ml-1">{this.props.activeItem.bio}</span>
-         
+              </div>
+        
+              </Col>
+            </Row>
+          </Container>
               <hr/>
               {this.printRelatives(this.state.personDetail)}
         </ModalBody>

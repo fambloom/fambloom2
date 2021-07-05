@@ -197,7 +197,6 @@ class PersonView extends Component {
           <img width="60px" src="https://cdn.discordapp.com/attachments/854112992025903142/859693897420636190/right-icon.png" alt="Icon" />
       </Row>
      
-        {/* <h1 className=" text-center my-4">Family Tree: {this.state.treeName}</h1> */}
         <div className="row">
           <div className="col-md-6 col-sm-10 mx-auto p-0">
             <div className="card p-3">

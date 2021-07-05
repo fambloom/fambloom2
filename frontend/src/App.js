@@ -8,6 +8,7 @@ import Home from './pages/Home'
 import Statistics from './pages/Statistics'
 import FamilyNode from './components/FamilyNode'
 import PersonTreeView from './components/PersonView'
+import TreeView from './pages/TreeView'
 
 
 // import SignUpCreate from './pages/SignUpCreate'

@@ -1,9 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap');
 
-#border {
+#homeLogo {
     border-radius: 25px 25px 25px 25px;
+    background: #F7F5F2;
+    border-width: 0px;
+    border-color:dimgray;
   }
+
+#homeSub {
+  font-size: calc(60% + 1vw + 1vh);
+}
 
 div {
     background: #F7F5F2;

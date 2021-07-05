@@ -96,22 +96,26 @@ class Home extends Component {
   render() {
 
     return (
-      <div>
+      <Container fluid>
         <br></br>
         <br></br>
         <br></br>
         <br></br>
         
-        <Container>
-        <Row style={{flex:1, justifyContent: "center", alignItems: "center"}}>
-        <img id="flower1" width="25%" src="https://cdn.discordapp.com/attachments/854112992025903142/859673352243511306/left.png" alt="Icon" />
-          <Col md={{ size: 6}}>
-          <Card id="border" body className="text-center">
+        <Container fluid>
+        <Row >
+        <Col className="px-0 ml-n5" >
+        <img id="flower1" width="100%" src="https://cdn.discordapp.com/attachments/854112992025903142/859673352243511306/left.png" alt="Icon" />
+        </Col>
+          <Col className="" >
+          <Card id="border" body className="text-center mx-n3">
             <img width="100%" src="https://cdn.discordapp.com/attachments/854112992025903142/859679165317382154/logo.png" alt="Logo" />
             <CardText className="fonts">discover how your family line blossomed through time</CardText>
           </Card>
           </Col>
-          <img id="flower2" width="25%" src="https://cdn.discordapp.com/attachments/854112992025903142/859673355452153926/right.png" alt="Icon" />
+          <Col className="px-0 mr-n5">
+          <img id="flower2" width="100%" src="https://cdn.discordapp.com/attachments/854112992025903142/859673355452153926/right.png" alt="Icon" />
+          </Col>
           </Row>
         </Container>
 
@@ -162,7 +166,7 @@ class Home extends Component {
       <br></br>
       </Container>
 
-      </div>
+      </Container>
     );
   }
 

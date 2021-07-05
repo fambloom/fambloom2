@@ -53,15 +53,15 @@ export default class CustomModal extends Component {
             </FormGroup>
             <FormGroup>
               <Label for="gender">Gender</Label>
-                <Input 
-                  type="text" 
-                  id="gender" 
-                  name="gender"
-                  value={this.state.activeItem.gender}
+                <Input type="radio" id="gender" name="gender"
+                  value="male"
                   onChange={this.handleChange}
-                  placeholder="Enter gender">
-                </Input>
-            </FormGroup>
+                  placeholder="Enter gender"/> Male 
+               <Input type="radio" id="gender" name="gender"
+                  value="female"
+                  onChange={this.handleChange}
+                  placeholder="Enter gender"/> Female
+            </FormGroup> 
           {/*   <FormGroup>
               <Label for="gender">Gender</Label>
                 <Input type="select" id="gender" name="gender"

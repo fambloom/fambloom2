@@ -109,6 +109,7 @@ class PersonView extends Component {
 
   addItem = () => {
     const item = {
+      tree: this.state.treeCode,
       firstName: "",
       lastName: "",
       gender: "",
@@ -128,11 +129,10 @@ class PersonView extends Component {
     this.setState({ activeItem: item, modal: !this.state.modal });
   };
 
-  renderItems = () => {
+  renderItems = (item) => {
     const newItems = this.state.peopleList
 
-    // MIRABELA EDIT HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE FOR TREECODE
-    return newItems.filter(item => item.tree == 'A').map((item) => (
+    return newItems.filter(person => person.tree == item).map((item) => (
       <li
         key={item.id}
         className="list-group-item d-flex justify-content-between align-items-center"
@@ -163,7 +163,7 @@ class PersonView extends Component {
                   Add Person
                 </button>
               <ul className="list-group list-group-flush border-top-0">
-                {this.renderItems()}
+                {this.renderItems(this.state.treeCode)}
               </ul>
             </div>
           </div>

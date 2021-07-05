@@ -71,36 +71,47 @@ export default class PersonViewModal extends Component {
     window.location.reload(false);
   }
 
+  handleStep2 = (item) => {
+    if (this.state.relationship == "parents") {
+      let newParents =  [...item.parents];
+      newParents.push(this.state.newItem.id);
+  
+      axios.patch(`/api/person/${item.id}/`, {  "parents": newParents  })
+      .then((res) => {this.refreshList(); })
+      .catch(err => { console.log(err) });
+    }
+
+    if (this.state.relationship == "children") {
+      let newChildren =  [...item.children];
+      newChildren.push(this.state.newItem.id);
+ 
+      axios.patch(`/api/person/${item.id}/`, {  "children": newChildren  })
+      .then((res) => { this.refreshList(); })
+      .catch(err => { console.log(err) });
+    }
+    return;
+  }
+
   handleSubmit = (item, newItem) => {
     this.toggle();
    
-    if (this.state.relationship == "parents") {
-      
+    if (this.state.relationship == "parents" || this.state.relationship == "children") {
       axios.post(`/api/person/`, newItem, )
       .then((res) => { 
-
-        console.log("PARENT RES DATA:");
-        console.log(res.data);
         this.setState({ newItem: res.data });
+        this.handleStep2(item);
       }).catch(err => { console.log(err) });
-        // need to fix
-      axios.patch(`/api/person/${item.id}/`, { parents: [this.state.newItem.id] })
-      .then((res) => {console.log(res.data); this.refreshList(); })
-      .catch(err => { console.log(err) });;
-        // console.log(res2);
       return;
     }
 
-    if (newItem.id) { // need to fix edit button
-      // axios
-      //   .put(`/api/person/${item.id}/`, item, )
-      //   .then((res) => this.refreshList());
+    if (newItem.id) { 
       return;
     } else {
       axios
       .post(`/api/person/`, newItem, )
-      .then((res) => {console.log(res.data); this.refreshList(); })
+      .then((res) => { this.refreshList(); })
       .catch(err => { console.log(err) });
+      return;
     }
 
   };
@@ -118,7 +129,7 @@ export default class PersonViewModal extends Component {
 
     axios
       .post(`/api/person/`, item, )
-      .then((res) => {console.log(res.data); this.refreshList1(); })
+      .then((res) => { this.refreshList1(); })
       .catch(err => { console.log(err) });
 
     this.refreshPage();
@@ -127,7 +138,7 @@ export default class PersonViewModal extends Component {
 
   handleAddParents = (item) => {
     let personAID = item.id;
-    console.log(item.id);
+  
     const newItem = {
      firstName: "",
      lastName: "",
@@ -147,7 +158,7 @@ export default class PersonViewModal extends Component {
 
  handleAddChildren = (item) => {
   let personAID = item.id;
-  console.log(item.id);
+ 
   const newItem = {
    firstName: "",
    lastName: "",
@@ -160,7 +171,7 @@ export default class PersonViewModal extends Component {
    siblings: [],
    tree: this.state.treeCode,
  };
- this.setState({ activeItem: item, newItem: newItem, modal: !this.state.modal });
+ this.setState({ relationship: "children", activeItem: item, newItem: newItem, modal: !this.state.modal });
 
 };
  
@@ -185,7 +196,7 @@ export default class PersonViewModal extends Component {
 
 handleAddSpouses= (item) => {
   let personAID = item.id;
-  console.log(item.id);
+  
   const newItem = {
    firstName: "",
    lastName: "",
@@ -296,13 +307,13 @@ handleAddSpouses= (item) => {
        {siblings}
        <hr/>
        <Label for="parents">Parents:</Label>
-       <button className="btn btn-secondary ml-2 btn-sm" disabled onClick={() => this.handleAddParents(this.props.activeItem)}>
+       <button className="btn btn-success ml-2 btn-sm" onClick={() => this.handleAddParents(this.props.activeItem)}>
             Add 
         </button>
         {parents}
        <hr/>
        <Label for="children">Children:</Label>
-       <button className="btn btn-secondary ml-2 btn-sm" disabled onClick={() => this.handleAddChildren(this.props.activeItem)}>
+       <button className="btn btn-success ml-2 btn-sm" onClick={() => this.handleAddChildren(this.props.activeItem)}>
                 Add 
             </button>
        {children}

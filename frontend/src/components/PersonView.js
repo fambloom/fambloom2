@@ -5,6 +5,8 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, In
 import axios from "axios";
 import PersonViewModal from './PersonViewModal';
 import AddModal from './Modal';
+import EditModal from './Modal';
+
 
 class PersonView extends Component {
   
@@ -14,7 +16,8 @@ class PersonView extends Component {
       treeCode: history.location.state.treeCode,
       treeName: history.location.state.treeName,
       peopleList: [],
-      addmodal: false,
+      addModal: false,
+      editmodal: false,
       modal: false,
       activeItem: {
         firstName: "",
@@ -53,6 +56,10 @@ class PersonView extends Component {
     this.setState({ addModal: !this.state.addModal });
   };
 
+  toggle2 = () => {
+    this.setState({ editModal: !this.state.editModal });
+  };
+
   handleSubmit1 = (item) => {
     this.toggle1();
 
@@ -69,7 +76,24 @@ class PersonView extends Component {
       .catch(err => { console.log(err) });
   };
 
-  
+  handleSubmit2= (item) => {
+    this.toggle2();
+
+    if (item.id) {
+      axios
+        .put(`/api/person/${item.id}/`, item, )
+        .then((res) => this.refreshList());
+      return;
+    }
+
+    axios
+      .post(`/api/person/`, item, )
+      .then((res) => {console.log(res.data); this.refreshList(); })
+      .catch(err => { console.log(err) });
+  };
+
+
+
   handleSubmit = (item) => {
     this.toggle();
 
@@ -126,9 +150,15 @@ class PersonView extends Component {
   };
 
 
-  editItem = (item) => {
+
+  relationships = (item) => {
     this.setState({ activeItem: item, modal: !this.state.modal });
   };
+
+  editPerson = (item) => {
+    this.setState({ activeItem: item, editModal: !this.state.editModal });
+  };
+
 
   renderItems = (item) => {
     const newItems = this.state.peopleList
@@ -144,8 +174,14 @@ class PersonView extends Component {
           {item.firstName} {item.lastName}
         </span>
         <span>
-          <button className="btn btn-secondary mr-2" onClick={() => this.editItem(item)}>
-            More
+          <button className="btn btn-primary mr-1" onClick={() => this.relationships(item)}>
+            Info
+          </button>
+          <button className="btn btn-secondary mr-1" onClick={ () => this.editPerson(item)}>
+            Edit
+          </button>
+          <button className="btn btn-danger" onClick={() => this.handleDelete(item)}>
+            Delete
           </button>
         </span>
       </li>
@@ -156,11 +192,11 @@ class PersonView extends Component {
     return (
       <main className="container">
         
-        <h1 className=" text-center my-4">Tree: {this.state.treeName}</h1>
+        <h1 className=" text-center my-4">Family: {this.state.treeName}</h1>
         <div className="row">
           <div className="col-md-6 col-sm-10 mx-auto p-0">
             <div className="card p-3">
-            <button className="btn btn-primary mx-auto" onClick={this.addItem}>
+            <button className="btn btn-success mx-auto" onClick={ () => this.addItem()}>
                   Add Person
                 </button>
               <ul className="list-group list-group-flush border-top-0">
@@ -174,6 +210,7 @@ class PersonView extends Component {
             activeItem={this.state.activeItem}
             toggle={this.toggle}
             onSave={this.handleSubmit}
+            treeCode={this.state.treeCode}
           />
         ) : null}
          {this.state.addModal ? (
@@ -181,6 +218,13 @@ class PersonView extends Component {
             activeItem={this.state.activeItem}
             toggle={this.toggle1}
             onSave={this.handleSubmit1}
+          />
+        ) : null}
+        {this.state.editModal ? (
+          <EditModal
+            activeItem={this.state.activeItem}
+            toggle={this.toggle2}
+            onSave={this.handleSubmit2}
           />
         ) : null}
       </main>

@@ -2,17 +2,12 @@ import React, { Component } from "react";
 import {
   Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Input, Label,
 } from "reactstrap";
-import axios from "axios";
 
 export default class CustomModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
       activeItem: this.props.activeItem,
-      newItem: this.props.newItem,
-      parent: this.props.parent,
-      relationship: this.props.relationship,
-      treeCode: this.props.treeCode,
     };
   }
 
@@ -21,13 +16,13 @@ export default class CustomModal extends Component {
     if (name == "gender") {
       value = value.toLowerCase();
     }
-    const newItem = { ...this.state.newItem, [name]: value };
+    const activeItem = { ...this.state.activeItem, [name]: value };
 
-    this.setState({ newItem });
+    this.setState({ activeItem });
   };
 
   render() {
-    const { toggle, onSave, onParentSave } = this.props;
+    const { toggle, onSave } = this.props;
 
     return ( <div>
       <Modal isOpen={true} toggle={toggle}>
@@ -40,7 +35,7 @@ export default class CustomModal extends Component {
                 type="text"
                 id="firstName"
                 name="firstName"
-                value={this.state.newItem.firstName}
+                value={this.state.activeItem.firstName}
                 onChange={this.handleChange}
                 placeholder="Enter first name"
               />
@@ -51,7 +46,7 @@ export default class CustomModal extends Component {
                 type="text"
                 id="lastName"
                 name="lastName"
-                value={this.state.newItem.lastName}
+                value={this.state.activeItem.lastName}
                 onChange={this.handleChange}
                 placeholder="Enter last name"
               />
@@ -62,7 +57,7 @@ export default class CustomModal extends Component {
                   type="text" 
                   id="gender" 
                   name="gender"
-                  value={this.state.newItem.gender}
+                  value={this.state.activeItem.gender}
                   onChange={this.handleChange}
                   placeholder="Enter gender">
                 </Input>
@@ -84,7 +79,7 @@ export default class CustomModal extends Component {
                 type="text"
                 id="bio"
                 name="bio"
-                value={this.state.newItem.bio}
+                value={this.state.activeItem.bio}
                 onChange={this.handleChange}
                 placeholder="Enter biography"
               />
@@ -95,7 +90,7 @@ export default class CustomModal extends Component {
                 type="text"
                 id="birthPlace"
                 name="birthPlace"
-                value={this.state.newItem.birthPlace}
+                value={this.state.activeItem.birthPlace}
                 onChange={this.handleChange}
                 placeholder="Enter birth place"
               />
@@ -103,7 +98,7 @@ export default class CustomModal extends Component {
           </Form>
         </ModalBody>
         <ModalFooter>
-          <Button color="success" onClick={() => onSave(this.state.activeItem, this.state.newItem)}>
+          <Button color="success" onClick={() => onSave(this.state.activeItem)}>
             Save
           </Button>
         </ModalFooter>

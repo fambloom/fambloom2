@@ -83,7 +83,7 @@ export default class PersonViewModal extends Component {
         console.log(res.data);
         this.setState({ newItem: res.data });
       }).catch(err => { console.log(err) });
-// need to fix
+        // need to fix
       axios.patch(`/api/person/${item.id}/`, { parents: [this.state.newItem.id] })
       .then((res) => {console.log(res.data); this.refreshList(); })
       .catch(err => { console.log(err) });;
@@ -138,6 +138,7 @@ export default class PersonViewModal extends Component {
      children: [personAID],
      spouses: [],
      siblings: [],
+     tree: this.state.treeCode,
    };
 
    this.setState({ relationship: "parents", activeItem: item, newItem: newItem, modal: !this.state.modal });
@@ -157,6 +158,7 @@ export default class PersonViewModal extends Component {
    children: [],
    spouses: [],
    siblings: [],
+   tree: this.state.treeCode,
  };
  this.setState({ activeItem: item, newItem: newItem, modal: !this.state.modal });
 
@@ -175,6 +177,7 @@ export default class PersonViewModal extends Component {
    children: [],
    spouses: [],
    siblings: [personAID],
+   tree: this.state.treeCode,
  };
 
  this.setState({ activeItem: item, newItem: newItem, modal: !this.state.modal });
@@ -193,6 +196,7 @@ handleAddSpouses= (item) => {
    children: [],
    spouses: [personAID],
    siblings: [],
+   tree: this.state.treeCode,
  };
  this.setState({ activeItem: item, newItem: newItem, modal: !this.state.modal });
 };
@@ -309,18 +313,18 @@ handleAddSpouses= (item) => {
 
     return (
       <div>
-      <Label for="parents">Parents:</Label>
-        {parents}
-       <hr/>
-
-       <Label for="children">Children:</Label>
-       {children}
-       <hr/>
        <Label for="spouses">Spouses:</Label>
        {spouses}
        <hr/>
        <Label for="siblings">Siblings:</Label> 
        {siblings}
+       <hr/>
+       <Label for="parents">Parents:</Label>
+        {parents}
+       <hr/>
+       <Label for="children">Children:</Label>
+       {children}
+     
        </div>
     )
   }
@@ -343,12 +347,14 @@ handleAddSpouses= (item) => {
       <Modal onExit={this.refreshPage} isOpen={true} toggle={toggle}>
         <ModalHeader toggle={toggle}>{this.props.activeItem.firstName} {this.props.activeItem.lastName}</ModalHeader>
         <ModalBody>
-              <Label for="bio">Bio:</Label>
-              {this.props.activeItem.bio} {' '}
+              <Label for="birthPlace">Birth Place:</Label>
+              <span className="ml-1">{this.props.activeItem.birthPlace}</span>  <br></br>
+              <Label for="Biography:">Biography:</Label>
+              <span className="ml-1">{this.props.activeItem.bio}</span>
               <span>
-                <button className="btn btn-secondary mr-2" onClick={() => this.editItem(this.props.activeItem)}>
+                {/* <button className="btn btn-secondary mr-2" onClick={() => this.editItem(this.props.activeItem)}>
                 Edit 
-                </button>
+                </button> */}
               </span>
               <hr/>
               {this.printRelatives(this.state.personDetail)}
@@ -360,6 +366,7 @@ handleAddSpouses= (item) => {
             newItem={this.state.newItem}
             toggle={this.toggle}
             onSave={this.handleSubmit}
+            treeCode={this.state.treeCode}
           />
         ) : null}
         {this.state.bioModal ? (

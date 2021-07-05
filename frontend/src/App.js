@@ -9,6 +9,7 @@ import Statistics from './pages/Statistics'
 import FamilyNode from './components/FamilyNode'
 import PersonTreeView from './components/PersonView'
 import TreeView from './pages/TreeView'
+import TreeList from './pages/TreeList'
 
 
 // import SignUpCreate from './pages/SignUpCreate'
@@ -50,6 +51,9 @@ class App extends Component {
           </Route>
           <Route exact path="/treeview">
             <TreeView/>
+          </Route>
+          <Route exact path="/treelist">
+            <TreeList/>
           </Route>
           {/*
           <Route path="/signupjoin">

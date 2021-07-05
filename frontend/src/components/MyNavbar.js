@@ -25,9 +25,12 @@ const NavigationBar = (props) => {
       <Navbar color="light" light expand="md">
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
-          <Nav className="container-fluid" navbar>
+          <Nav  navbar>
           <NavItem >
               <NavLink exact href="/">Home</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink exact href="/treelist">Tree List</NavLink>
             </NavItem>
             {/* <NavItem>
               <NavLink exact href="/person_list">Person List</NavLink>

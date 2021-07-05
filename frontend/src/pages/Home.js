@@ -55,8 +55,7 @@ class Home extends Component {
       .post(`/api/tree/`, item, )
       .then((res) => {console.log(res.data); this.refreshList(); })
       .catch(err => { console.log(err) });
-      
-
+    
     
   };
 

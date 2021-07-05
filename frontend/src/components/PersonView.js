@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import history from '../history';
 
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Input, Label } from "reactstrap";
+import { Row, Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Input, Label } from "reactstrap";
 import axios from "axios";
 import PersonViewModal from './PersonViewModal';
 import AddModal from './Modal';
@@ -191,8 +191,13 @@ class PersonView extends Component {
   render() {
     return (
       <main className="container">
-        
-        <h1 className=" text-center my-4">Family: {this.state.treeName}</h1>
+        <Row style={{flex:1, justifyContent: "center", alignItems: "center"}}>
+          <img width="60px" src="https://cdn.discordapp.com/attachments/854112992025903142/859693896300232724/left-icon.png" alt="Icon" />
+          <h1 body className="text-center">Tree: {this.state.treeName}</h1>
+          <img width="60px" src="https://cdn.discordapp.com/attachments/854112992025903142/859693897420636190/right-icon.png" alt="Icon" />
+      </Row>
+     
+        {/* <h1 className=" text-center my-4">Family Tree: {this.state.treeName}</h1> */}
         <div className="row">
           <div className="col-md-6 col-sm-10 mx-auto p-0">
             <div className="card p-3">

@@ -51,24 +51,22 @@ export default class Statistics extends Component {
 
         <Container>
 
-        <h3 body className="text-center">Statistics</h3>
+        <h3 body className="text-center">Total Statistics</h3>
         <br></br>
-        <Row>
-      <Card>
+       
+      <Card  className="mx-auto"style={{width: "350px"}}>
         <CardBody body className="text-center">
         {this.state.women && 
         <PieChart lineWidth={50} label={({ dataEntry }) => dataEntry.title}
           data={[{ title: "women", value: this.state.women,  color: '#e995fc' },
             { title: "men", value: this.state.men,  color: '#67d0f0'   }]}
         /> }
-          <CardTitle tag="h5" centered>Total Statistics</CardTitle>
+        <hr></hr>
+          <h3>{this.state.women} are female</h3>
+          <h3>{this.state.men} are male</h3>
         </CardBody>
         </Card>
-        </Row>
-
-      <br></br>
-      <h2>{this.state.women} are female</h2>
-      <h2>{this.state.men} are male</h2>
+      
       </Container>
 
       </div>

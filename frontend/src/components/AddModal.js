@@ -55,28 +55,17 @@ export default class CustomModal extends Component {
                 placeholder="Enter last name"
               />
             </FormGroup>
-            <FormGroup>
+          <FormGroup>
               <Label for="gender">Gender</Label>
-                <Input 
-                  type="text" 
-                  id="gender" 
-                  name="gender"
-                  value={this.state.newItem.gender}
+                <Input type="radio" id="gender" name="gender"
+                  value="male"
                   onChange={this.handleChange}
-                  placeholder="Enter gender">
-                </Input>
-            </FormGroup>
-          {/*   <FormGroup>
-              <Label for="gender">Gender</Label>
-                <Input type="select" id="gender" name="gender"
-                  value={this.state.activeItem.gender}
+                  placeholder="Enter gender"/> Male 
+               <Input type="radio" id="gender" name="gender"
+                  value="female"
                   onChange={this.handleChange}
-                  placeholder="Enter gender">
-                  <option>female</option>
-                  <option>male</option>
-                  <option>other</option>
-                </Input>
-            </FormGroup> */}
+                  placeholder="Enter gender"/> Female
+            </FormGroup> 
             <FormGroup>
               <Label for="bio">Biography</Label>
               <Input

@@ -64,7 +64,7 @@ export default class Statistics extends Component {
 
         <Container>
 
-        <h3 body className="text-center">Total Statistics</h3>
+        <h1 body className="text-center">Total Statistics</h1>
         <br></br>
        <CardColumns>
         {this.renderStats()}

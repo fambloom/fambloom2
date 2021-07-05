@@ -30,6 +30,7 @@ class App extends Component {
     return (
         <Router history={history}>
         <MyNavbar/>
+        <div id="app">
         <Switch>
           <Route exact path="/">
             <Home/>
@@ -69,6 +70,7 @@ class App extends Component {
           <Step2View/>
           </Route> */}
         </Switch>
+        </div>
         </Router>
     );
   }

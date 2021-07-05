@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import history from '../history';
 
-import { Row, Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Input, Label } from "reactstrap";
+import { Container, Col, Card, CardImg, CardFooter, CardBody, CardColumns, CardTitle, CardDeck, CardSubtitle, Row, Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Input, Label } from "reactstrap";
 import axios from "axios";
 import PersonViewModal from './PersonViewModal';
 import AddModal from './Modal';
@@ -160,38 +160,94 @@ class PersonView extends Component {
   };
 
 
-  renderItems = (item) => {
-    const newItems = this.state.peopleList
+  renderImage = (item) => {
+    let gen = item.gender;
+    if (gen=="female") {
+      return (
+        <div>
+        <CardImg className="pt-3 pb-1 px-5"  width="65%" src="https://media.discordapp.net/attachments/854112992025903142/861662921847341056/female-icon.png" />
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <CardImg className="pt-3 pb-1 px-5" width="65%" src="https://media.discordapp.net/attachments/854112992025903142/861662923961139230/male-icon.png" />
+        </div>
+      );
+    }
+  }
 
+  renderPeople = (item) => {
+    const newItems = this.state.peopleList;
     return newItems.filter(person => person.tree == item).map((item) => (
-      <li
-        key={item.id}
-        className="list-group-item d-flex justify-content-between align-items-center"
-      >
-        <span
-          className="nav-link"
-          title={item.bio} >
-          {item.firstName} {item.lastName}
-        </span>
-        <span>
-          <button className="btn btn-primary mr-1" onClick={() => this.relationships(item)}>
+      <Card style={{width:"225px"}}>
+        {this.renderImage(item)}
+        <CardBody>
+          <CardTitle tag="h5"> {item.firstName}   {item.lastName} </CardTitle> 
+        
+          <Button className="btn btn-info mr-1 btn-sm" onClick={() => this.relationships(item)}>
             Info
-          </button>
-          <button className="btn btn-secondary mr-1" onClick={ () => this.editPerson(item)}>
+          </Button>
+          <Button className="btn btn-secondary mr-1 btn-sm" onClick={ () => this.editPerson(item)}>
             Edit
-          </button>
-          <button className="btn btn-danger" onClick={() => this.handleDelete(item)}>
+          </Button>
+          <Button className="btn btn-danger btn-sm" onClick={() => this.handleDelete(item)}>
             Delete
-          </button>
-        </span>
-      </li>
+          </Button>
+        
+        </CardBody>
+      </Card>
     ));
-  };
+  }
+
+
+  // renderItems = (item) => {
+  //   const newItems = this.state.peopleList;
+
+  //   return newItems.filter(person => person.tree == item).map((item) => (
+  //     <li
+  //       key={item.id}
+  //       className="list-group-item d-flex justify-content-between align-items-center"
+  //     >
+  //       <span
+  //         className="nav-link"
+  //         title={item.bio} >
+  //         {item.firstName} {item.lastName}
+  //       </span>
+  //       <span>
+  //         <button className="btn btn-primary mr-1" onClick={() => this.relationships(item)}>
+  //           Info
+  //         </button>
+  //         <button className="btn btn-secondary mr-1" onClick={ () => this.editPerson(item)}>
+  //           Edit
+  //         </button>
+  //         <button className="btn btn-danger" onClick={() => this.handleDelete(item)}>
+  //           Delete
+  //         </button>
+  //       </span>
+  //     </li>
+  //   ));
+  // };
 
   render() {
     return (
-      <main className="container">
+      <div>
+        <Container>
         <Row style={{flex:1, justifyContent: "center", alignItems: "center"}}>
+          <img width="90px" src="https://cdn.discordapp.com/attachments/854112992025903142/859693896300232724/left-icon.png" alt="Icon" />
+          <h1 body className="text-center">Tree: {this.state.treeName}</h1>
+          <img width="90px" src="https://cdn.discordapp.com/attachments/854112992025903142/859693897420636190/right-icon.png" alt="Icon" />
+         </Row>
+         <hr></hr>
+         <Button className="btn btn-success mx-auto" onClick={ () => this.addItem()}>Add Person</Button>
+        
+         <CardColumns className="mt-4">
+           {this.renderPeople(this.state.treeCode)}
+         </CardColumns>
+        </Container>
+
+
+        {/* <Row style={{flex:1, justifyContent: "center", alignItems: "center"}}>
           <img width="60px" src="https://cdn.discordapp.com/attachments/854112992025903142/859693896300232724/left-icon.png" alt="Icon" />
           <h1 body className="text-center">Tree: {this.state.treeName}</h1>
           <img width="60px" src="https://cdn.discordapp.com/attachments/854112992025903142/859693897420636190/right-icon.png" alt="Icon" />
@@ -208,7 +264,7 @@ class PersonView extends Component {
               </ul>
             </div>
           </div>
-        </div>
+        </div> */}
         {this.state.modal ? (
           <PersonViewModal
             activeItem={this.state.activeItem}
@@ -231,7 +287,7 @@ class PersonView extends Component {
             onSave={this.handleSubmit2}
           />
         ) : null}
-      </main>
+     </div>
     );
   }
 }

@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import history from '../history';
+
 import InTreeView from "../pages/InTreeView";
 import axios from "axios";
 import {  } from "reactstrap";
@@ -7,14 +9,14 @@ import * as tools from "../tools";
 
 
 class TreeView extends Component {
-   WIDTH = 150;
-   HEIGHT = 150;
 
   constructor(props) {
     super(props);
-    
+    // {this.setState({treeCode: history.location.state.treeCode})}
+
     this.state = {
-      code: null,
+      treeCode: history.location.state.treeCode,
+      treeName: "",
       newPeopleList: [],
       peopleList: [],
       modal: false,
@@ -37,15 +39,17 @@ class TreeView extends Component {
   }
 
   componentDidMount() {
+
     this.refreshList();
   }
 
   refreshList = () => {
 
     axios
-      .get(`/api/treedetail/A/`)
+      .get(`/api/treedetail/${this.state.treeCode}/`)
       .then((res) => {
-        this.setState((state, props) => ( {newPeopleList: tools.objectReformat(res.data.people)} ) );   
+        this.setState((state, props) => ( {newPeopleList: tools.objectReformat(res.data.people)} ) );  
+        this.setState({treeName: res.data.treeName});
         console.log("new items here");
         console.log(this.state.newPeopleList);
       })
@@ -54,9 +58,10 @@ class TreeView extends Component {
 
 
   render() {
+    
     return (
       <div >
-        <h1>Family Tree View</h1>
+        <h1>Family Tree View: {this.state.treeName}</h1>
         <InTreeView newPeopleList={this.state.newPeopleList}></InTreeView>
     
       </div>

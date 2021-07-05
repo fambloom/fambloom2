@@ -118,27 +118,21 @@ class Home extends Component {
         <br></br>
         <br></br>
         <br></br>
-        <br></br>
 
       <Container style={{flex:1, justifyContent: "center", alignItems: "center"}}>
 
       <Row style={{flex:1, justifyContent: "center", alignItems: "center"}}>
-          <img width="25%" src="https://cdn.discordapp.com/attachments/854112992025903142/859693896300232724/left-icon.png" alt="Icon" />
+          <img width="60px" src="https://cdn.discordapp.com/attachments/854112992025903142/859693896300232724/left-icon.png" alt="Icon" />
           <h3 body className="text-center">List of Public Trees</h3>
-          <img width="25%" src="https://cdn.discordapp.com/attachments/854112992025903142/859693897420636190/right-icon.png" alt="Icon" />
+          <img width="60px" src="https://cdn.discordapp.com/attachments/854112992025903142/859693897420636190/right-icon.png" alt="Icon" />
       </Row>
      
-      <br></br>
-
 
       <br></br>
       <Row className="flex-wrap" style={{flex:1, justifyContent: "center", alignItems: "center"}}>
       {this.renderItems()}
       </Row>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
+   
       </Container>
 
       <Container>
@@ -146,13 +140,11 @@ class Home extends Component {
 <Col sm="10" md={{ size: 6, offset: 3 }}>
 
 <br></br>
-<br></br>
-<br></br>
-
+<br></br>  <br></br>  <br></br>
 <h4 body className="text-center">Want to create your own family tree?</h4>
       <br></br>
 <Card>
-  <CardBody body className="text-center" id="border">
+  <CardBody body className="text-center" >
     <CardTitle tag="h2" centered>Create</CardTitle>
     <CardTitle tag="h5" centered>a new family tree</CardTitle>
     <FormGroup>

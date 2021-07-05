@@ -14,7 +14,7 @@ export default class Homepage extends Component {
  <Row>
 <Col sm="10" md={{ size: 6, offset: 3 }}>
 <br></br>
-<Card>
+<Card id="border">
 <CardBody body className="text-center">
 <CardTitle tag="h2" centered>Welcome to TreeName</CardTitle>
 <CardTitle tag="h5" centered>Add your First Person to get started</CardTitle>

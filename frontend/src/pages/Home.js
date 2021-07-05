@@ -103,13 +103,15 @@ class Home extends Component {
         <br></br>
         
         <Container>
-          <Row>
-          <Col sm="10" md={{ size: 6, offset: 3 }}>
-          <Card body className="text-center">
+        <Row style={{flex:1, justifyContent: "center", alignItems: "center"}}>
+        <img id="flower1" width="25%" src="https://cdn.discordapp.com/attachments/854112992025903142/859673352243511306/left.png" alt="Icon" />
+          <Col md={{ size: 6}}>
+          <Card id="border" body className="text-center">
             <img width="100%" src="https://cdn.discordapp.com/attachments/854112992025903142/859679165317382154/logo.png" alt="Logo" />
             <CardText className="fonts">discover how your family line blossomed through time</CardText>
           </Card>
           </Col>
+          <img id="flower2" width="25%" src="https://cdn.discordapp.com/attachments/854112992025903142/859673355452153926/right.png" alt="Icon" />
           </Row>
         </Container>
 
@@ -121,15 +123,21 @@ class Home extends Component {
       <Container style={{flex:1, justifyContent: "center", alignItems: "center"}}>
 
       <Row style={{flex:1, justifyContent: "center", alignItems: "center"}}>
-          <img width="60px" src="https://cdn.discordapp.com/attachments/854112992025903142/859693896300232724/left-icon.png" alt="Icon" />
+          <img width="25%" src="https://cdn.discordapp.com/attachments/854112992025903142/859693896300232724/left-icon.png" alt="Icon" />
           <h3 body className="text-center">List of Public Trees</h3>
-          <img width="60px" src="https://cdn.discordapp.com/attachments/854112992025903142/859693897420636190/right-icon.png" alt="Icon" />
+          <img width="25%" src="https://cdn.discordapp.com/attachments/854112992025903142/859693897420636190/right-icon.png" alt="Icon" />
       </Row>
      
+      <br></br>
+
+
       <br></br>
       <Row className="flex-wrap" style={{flex:1, justifyContent: "center", alignItems: "center"}}>
       {this.renderItems()}
       </Row>
+      <br></br>
+      <br></br>
+      <br></br>
       <br></br>
       </Container>
 
@@ -137,11 +145,14 @@ class Home extends Component {
         <Row>
 <Col sm="10" md={{ size: 6, offset: 3 }}>
 
-  
+<br></br>
+<br></br>
+<br></br>
+
 <h4 body className="text-center">Want to create your own family tree?</h4>
       <br></br>
 <Card>
-  <CardBody body className="text-center">
+  <CardBody body className="text-center" id="border">
     <CardTitle tag="h2" centered>Create</CardTitle>
     <CardTitle tag="h5" centered>a new family tree</CardTitle>
     <FormGroup>

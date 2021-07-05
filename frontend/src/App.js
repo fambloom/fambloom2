@@ -8,6 +8,7 @@ import Home from './pages/Home'
 import Statistics from './pages/Statistics'
 import FamilyNode from './components/FamilyNode'
 import PersonTreeView from './components/PersonView'
+import TreeView from './pages/TreeView'
 
 
 // import SignUpCreate from './pages/SignUpCreate'
@@ -46,6 +47,9 @@ class App extends Component {
           </Route>
           <Route exact path="/persontreeview">
             <PersonTreeView/>
+          </Route>
+          <Route exact path="/treeview">
+            <TreeView/>
           </Route>
           {/*
           <Route path="/signupjoin">

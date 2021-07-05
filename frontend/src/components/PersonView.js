@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import history from '../history';
+
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Input, Label } from "reactstrap";
 import axios from "axios";
 import PersonViewModal from './PersonViewModal';
@@ -9,6 +11,7 @@ class PersonView extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      treeCode: history.location.state.treeCode,
       peopleList: [],
       addmodal: false,
       modal: false,

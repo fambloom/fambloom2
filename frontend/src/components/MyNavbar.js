@@ -26,21 +26,21 @@ const NavigationBar = (props) => {
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="container-fluid" navbar>
-            <NavItem>
+          <NavItem >
+              <NavLink exact href="/">Home</NavLink>
+            </NavItem>
+            {/* <NavItem>
               <NavLink exact href="/person_list">Person List</NavLink>
-            </NavItem>
-            <NavItem>
+            </NavItem> */}
+            {/* <NavItem>
               <NavLink exact href="/treenode">FamilyNode</NavLink>
-            </NavItem>
+            </NavItem> */}
             <NavItem>
               <NavLink exact href="/statistics">Statistics</NavLink>
             </NavItem>
-            <NavItem>
+            {/* <NavItem>
               <NavLink exact href="/persontreeview">Person View</NavLink>
-            </NavItem>
-            <NavItem className="ml-auto">
-              <NavLink exact href="/">Home</NavLink>
-            </NavItem>
+            </NavItem> */}
           </Nav>
         </Collapse>
       </Navbar>   

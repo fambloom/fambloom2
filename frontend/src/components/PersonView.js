@@ -12,6 +12,7 @@ class PersonView extends Component {
     super(props);
     this.state = {
       treeCode: history.location.state.treeCode,
+      treeName: history.location.state.treeName,
       peopleList: [],
       addmodal: false,
       modal: false,
@@ -155,7 +156,7 @@ class PersonView extends Component {
     return (
       <main className="container">
         
-        <h1 className=" text-uppercase text-center my-4">Fambloom App</h1>
+        <h1 className=" text-center my-4">Tree: {this.state.treeName}</h1>
         <div className="row">
           <div className="col-md-6 col-sm-10 mx-auto p-0">
             <div className="card p-3">

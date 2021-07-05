@@ -18,6 +18,7 @@ class Home extends Component {
         treeName: '',
       },
       treeCode: '',
+      treeName: '',
     };
   }
 
@@ -67,12 +68,12 @@ class Home extends Component {
   };
 
 
-  handleGotoTreeView = (treeCode) => {
-    history.push('/treeview', {treeCode: treeCode})
-  }
+  // handleGotoTreeView = (treeCode) => {
+  //   history.push('/treeview', {treeCode: treeCode})
+  // }
 
-  handleGotoPersonTreeView = (treeCode) => {
-    history.push('/persontreeview', {treeCode: treeCode})
+  handleGotoPersonTreeView = (treeCode, treeName) => {
+    history.push('/persontreeview', {treeCode: treeCode, treeName: treeName})
   }
 
   renderItems = () => {
@@ -83,8 +84,8 @@ class Home extends Component {
         <Card key={item.treeCode} className="mx-4">
         <CardBody body className="text-center">
           <CardTitle tag="h5" centered>{item.treeName}</CardTitle>
-          <Button onClick={() => this.handleGotoTreeView(item.treeCode)} centered outline color="secondary">Go to TreeView</Button>
-          <Button onClick={() => this.handleGotoPersonTreeView(item.treeCode)} centered outline color="secondary">Go to PersonTreeView</Button>
+          {/* <Button onClick={() => this.handleGotoTreeView(item.treeCode)} centered outline color="secondary">Go to TreeView</Button> */}
+          <Button onClick={() => this.handleGotoPersonTreeView(item.treeCode, item.treeName)} centered outline color="secondary">Go to Tree</Button>
 
         </CardBody>
       </Card>

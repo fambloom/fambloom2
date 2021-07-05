@@ -1,6 +1,7 @@
 import React, { Component, useState } from "react";
 import { Container, Row, Col } from "reactstrap";
-import { useHistory } from "react-router-dom";
+import { withRouter } from 'react-router'
+import history from '../history';
 import { Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button, FormGroup, Label, Input
 } from 'reactstrap';
@@ -67,10 +68,7 @@ class Home extends Component {
 
 
   handleGotoTree = (treeCode) => {
-    // let history = useHistory();
-    // history.push('/treeview', {
-    //   code: treeCode
-    // })
+    history.push('/treeview', {treeCode: treeCode})
   }
 
   renderItems = () => {
@@ -78,7 +76,7 @@ class Home extends Component {
     return newItems.map((item) => (
 
         
-        <Card className="mx-4">
+        <Card key={item.treeCode} className="mx-4">
         <CardBody body className="text-center">
           <CardTitle tag="h5" centered>{item.treeName}</CardTitle>
           <Button onClick={() => this.handleGotoTree(item.treeCode)} centered outline color="secondary">Go to Tree</Button>
@@ -161,4 +159,4 @@ class Home extends Component {
 
 }
 
-export default Home;
+export default withRouter(Home);

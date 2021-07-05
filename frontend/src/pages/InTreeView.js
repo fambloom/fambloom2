@@ -9,12 +9,12 @@ import {
 import styles from '../App.css';
 // import PinchZoomPan from '../PinchZoomPan/PinchZoomPan';
 
-const WIDTH = 150;
-const HEIGHT = 150;
+const WIDTH = 100;
+const HEIGHT = 100;
 
 export default class TreeView extends Component {
-   WIDTH = 150;
-   HEIGHT = 150;
+   WIDTH = 100;
+   HEIGHT = 100;
 
   constructor(props) {
     super(props);
@@ -41,7 +41,7 @@ export default class TreeView extends Component {
   }
 
   handleClick (e) {
-    console.log("HIWOADWAIHDWAOHD");
+    // console.log("HIWOADWAIHDWAOHD");
     e.preventDefault();
     const item = {
       firstName: "",

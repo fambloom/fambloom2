@@ -6,6 +6,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
+    "history": "^4.10.1",
     "pinch-zoom-pan": "^3.0.0",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",

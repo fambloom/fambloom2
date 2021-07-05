@@ -1,6 +1,7 @@
 import './App.css';
 import React, { Component } from "react";
-import { BrowserRouter, Switch, Route, withRouter } from "react-router-dom";
+import { Switch, Route, Router } from "react-router-dom";
+import history from './history';
 import MyNavbar from './components/MyNavbar';
 import PersonList from './components/PersonList';
 import Home from './pages/Home'
@@ -20,11 +21,12 @@ import axios from 'axios';
 axios.defaults.xsrfCookieName = 'csrftoken'
 axios.defaults.xsrfHeaderName = 'X-CSRFToken'
 
+
 class App extends Component {
   
   render() {
     return (
-        <BrowserRouter>
+        <Router history={history}>
         <MyNavbar/>
         <Switch>
           <Route exact path="/">
@@ -59,7 +61,7 @@ class App extends Component {
           <Step2View/>
           </Route> */}
         </Switch>
-        </BrowserRouter>
+        </Router>
     );
   }
 }

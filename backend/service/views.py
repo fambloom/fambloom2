@@ -7,7 +7,7 @@ from rest_framework import viewsets, status
 from rest_framework.generics import GenericAPIView
 from .serializers import PersonSerializer, TreeSerializer, TreeDetailSerializer, PersonDetailSerializer, PersonDetailRelativeSerializer
 from .models.models import Person, Tree
-from django.db.models import Count
+from django.db.models import Count, Q
 from django.http import JsonResponse
 from rest_framework.response import Response
 from django.http import Http404
@@ -77,6 +77,12 @@ def countWomen(request):
 def countMen(request):
     count = Person.objects.filter(gender="male").count()
     return JsonResponse({"men": count})
+
+
+def treeStats(request):
+    count = Tree.objects.annotate(women=Count('people', filter=Q(people__gender='female')),men=Count('people', filter=Q(people__gender='male'))).values()
+    return JsonResponse({"treeStats": list(count)})
+
 
 
 def uppercase_text(request):

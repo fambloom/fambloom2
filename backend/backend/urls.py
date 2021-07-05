@@ -33,5 +33,6 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('stats/countWomen/', views.countWomen, name='stats/countWomen'), 
     path('stats/countMen/', views.countMen, name='stats/countMen'), 
+    path('stats/treeStats/', views.treeStats, name='stats/treeStats'), 
     re_path(".*", TemplateView.as_view(template_name="index.html")),
 ]

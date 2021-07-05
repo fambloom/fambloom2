@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {  } from "reactstrap";
 import { Container, Row, Col } from "reactstrap";
-import { Card, CardImg, CardText, CardBody,
+import { Card, CardImg, CardText, CardBody, CardDeck, CardColumns,
   CardTitle, CardSubtitle, Button
 } from 'reactstrap';
 import axios from "axios";
@@ -19,30 +19,43 @@ export default class Statistics extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      women: [],
-      men: [],
+      treeStats: [],
     };
   }
 
 
   componentDidMount() {
     this.refreshList();
-    this.refreshList2();
   }
 
   refreshList = () => {
     axios
-      .get(`/stats/countWomen/`)
-      .then((res) => this.setState({ women: res.data.women }))
+      .get(`/stats/treeStats/`)
+      .then((res) => this.setState({ treeStats: res.data.treeStats }))
       .catch((err) => console.log(err));
   };
 
-  refreshList2 = () => {
-    axios
-      .get(`/stats/countMen/`)
-      .then((res) => this.setState({ men: res.data.men }))
-      .catch((err) => console.log(err));
-  };
+
+  renderStats = () => {
+    const newItems = this.state.treeStats
+    return newItems.map((item) => ( //className="mx-auto"
+      <Card  >
+      <CardBody body className="text-center">
+      { item.women!=0 && item.men !=0 &&
+      <PieChart style={{height: "150px"}} lineWidth={50} label={({ dataEntry }) => dataEntry.title}
+        data={[{ title: "women", value: item.women,  color: '#e995fc' },
+          { title: "men", value: item.men,  color: '#67d0f0'   }]}
+      /> }
+
+      {item.women==0 && item.men ==0 && <h3>Empty Tree!</h3>}
+      <hr></hr>
+      <h5>{item.treeName}</h5>
+        <h6>{item.women} are female</h6>
+        <h6>{item.men} are male</h6>
+      </CardBody>
+      </Card>
+    ));
+  }
 
   render() {
     return (
@@ -53,20 +66,9 @@ export default class Statistics extends Component {
 
         <h3 body className="text-center">Total Statistics</h3>
         <br></br>
-       
-      <Card  className="mx-auto"style={{width: "350px"}}>
-        <CardBody body className="text-center">
-        {this.state.women && 
-        <PieChart lineWidth={50} label={({ dataEntry }) => dataEntry.title}
-          data={[{ title: "women", value: this.state.women,  color: '#e995fc' },
-            { title: "men", value: this.state.men,  color: '#67d0f0'   }]}
-        /> }
-        <hr></hr>
-          <h3>{this.state.women} are female</h3>
-          <h3>{this.state.men} are male</h3>
-        </CardBody>
-        </Card>
-      
+       <CardColumns>
+        {this.renderStats()}
+        </CardColumns>
       </Container>
 
       </div>

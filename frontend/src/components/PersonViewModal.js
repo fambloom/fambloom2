@@ -203,22 +203,11 @@ handleAddSpouses= (item) => {
 
 
   handleDelete = (item) => {
-    
     axios
       .delete(`/api/person/${item.id}/`)
       .then((res) => this.refreshList());
   };
 
-  // returns array of parent/spouse/child IDs
-//    familyMemberReformat(inputObject) {
-// 	let result = inputObject.map(({ id }) => id);
-//     return result;
-// }
-
-// familyMemberReformatTest(inputObject) {
-// 	// let result = inputObject.map(({ id }) => id);
-//   return ( )
-// }
 
   printRelatives = (personDetail) => {
 
@@ -226,42 +215,29 @@ handleAddSpouses= (item) => {
     let parents = null;
     if (personDetail.parents && personDetail.parents.length > 0) {
       parents = personDetail.parents.map( (p) => { 
-        return (<div><li> {p.firstName} {p.lastName}</li>      
-        {/* <button className="btn btn-secondary mr-2" onClick={() => this.editItem(p)}>
-        Edit 
-      </button> */}
-      <button className="btn btn-danger" onClick={() => this.handleDelete(p)}>
+        return (<div><li> {p.firstName} {p.lastName}    
+      <button className="btn btn-danger ml-2 btn-sm" onClick={() => this.handleDelete(p)}>
         Delete
-      </button>
+      </button></li>  
       </div>
       )})
     } else {
         parents = nullMessage.map( (nullMessage) => { 
-            return (<div><p>{nullMessage}</p>         
-        <button className="btn btn-secondary mr-2" disabled onClick={() => this.handleAddParents(this.props.activeItem)}>
-            Add 
-        </button>
-        </div>
-        )})
+            return (<div><p>{nullMessage}</p> </div>)})
      }
     let spouses = null;
     if (personDetail.spouses && personDetail.spouses.length > 0) {
       spouses = personDetail.spouses.map( (p) => { 
-        return (<div><li> {p.firstName} {p.lastName}</li>
-            {/* <button className="btn btn-secondary mr-2" onClick={() => this.editItem(this.props.activeItem)}>
-            Edit 
-          </button> */}
-          <button className="btn btn-danger" onClick={() => this.handleDelete(p)}>
+        return (<div><li> {p.firstName} {p.lastName}
+       
+          <button className="btn btn-danger ml-2 btn-sm" onClick={() => this.handleDelete(p)}>
             Delete
-          </button>
+          </button></li>
           </div>
           )})
     } else {
         spouses = nullMessage.map((nullMessage) => { 
             return (<div><p>{nullMessage}</p>         
-          <button className="btn btn-secondary mr-2" onClick={() => this.handleAddSpouses(this.props.activeItem)}>
-            Add 
-          </button>
         </div>
          )})
     }
@@ -269,22 +245,19 @@ handleAddSpouses= (item) => {
     let children = null;
     if (personDetail.children && personDetail.children.length > 0) {
       children = personDetail.children.map( (p) => { 
-        return (<div><li> {p.firstName} {p.lastName}</li>
-            {/* <button className="btn btn-secondary mr-2" onClick={() => this.editItem(this.props.activeItem)}>
-            Edit 
-          </button> */}
-          <button className="btn btn-danger" onClick={() => this.handleDelete(p)}>
+        return (<div><li> {p.firstName} {p.lastName}
+       
+          <button className="btn btn-danger ml-2 btn-sm" onClick={() => this.handleDelete(p)}>
             Delete
           </button>
+        </li>
           </div>
         )
       })
     } else {
         children = nullMessage.map((nullMessage) => { 
         return (<div><p>{nullMessage}</p>         
-            <button className="btn btn-secondary mr-2" disabled onClick={() => this.handleAddChildren(this.props.activeItem)}>
-                Add 
-            </button>
+        
             </div>
             )})
      }
@@ -292,21 +265,18 @@ handleAddSpouses= (item) => {
      let siblings = null;
      if (personDetail.siblings && personDetail.siblings.length > 0) {
       siblings = personDetail.siblings.map( (p) => { 
-         return (<div><li> {p.firstName} {p.lastName}</li>
-             {/* <button className="btn btn-secondary mr-2" onClick={() => this.editItem(this.props.activeItem)}>
-             Edit 
-           </button> */}
-           <button className="btn btn-danger" onClick={() => this.handleDelete(p)}>
+         return (<div><li> {p.firstName} {p.lastName}
+          
+           <button className="btn btn-danger ml-2 btn-sm" onClick={() => this.handleDelete(p)}>
              Delete
            </button>
+        </li>
            </div>
            )})
      } else {
          siblings = nullMessage.map((nullMessage) => { 
              return (<div><p>{nullMessage}</p>         
-           <button className="btn btn-secondary mr-2" onClick={() => this.handleAddSiblings(this.props.activeItem)}>
-             Add 
-           </button>
+          
          </div>
           )})
      }
@@ -314,15 +284,27 @@ handleAddSpouses= (item) => {
     return (
       <div>
        <Label for="spouses">Spouses:</Label>
+       <button className="btn btn-success ml-2 btn-sm" onClick={() => this.handleAddSpouses(this.props.activeItem)}>
+            Add 
+          </button>
        {spouses}
        <hr/>
        <Label for="siblings">Siblings:</Label> 
+       <button className="btn btn-success ml-2 btn-sm" onClick={() => this.handleAddSiblings(this.props.activeItem)}>
+             Add 
+           </button>
        {siblings}
        <hr/>
        <Label for="parents">Parents:</Label>
+       <button className="btn btn-secondary ml-2 btn-sm" disabled onClick={() => this.handleAddParents(this.props.activeItem)}>
+            Add 
+        </button>
         {parents}
        <hr/>
        <Label for="children">Children:</Label>
+       <button className="btn btn-secondary ml-2 btn-sm" disabled onClick={() => this.handleAddChildren(this.props.activeItem)}>
+                Add 
+            </button>
        {children}
      
        </div>
@@ -351,11 +333,7 @@ handleAddSpouses= (item) => {
               <span className="ml-1">{this.props.activeItem.birthPlace}</span>  <br></br>
               <Label for="Biography:">Biography:</Label>
               <span className="ml-1">{this.props.activeItem.bio}</span>
-              <span>
-                {/* <button className="btn btn-secondary mr-2" onClick={() => this.editItem(this.props.activeItem)}>
-                Edit 
-                </button> */}
-              </span>
+         
               <hr/>
               {this.printRelatives(this.state.personDetail)}
         </ModalBody>
@@ -376,7 +354,7 @@ handleAddSpouses= (item) => {
             onSave={this.handleSubmit1}
           />
         ) : null}
-          <Button color="success" onClick={toggle}>
+          <Button color="info" onClick={toggle}>
 
             Exit
           </Button>

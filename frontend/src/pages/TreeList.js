@@ -62,7 +62,7 @@ class TreeList extends Component {
 
   handleDelete = (item) => {
     axios
-      .delete(`/api/tree/${item.id}/`)
+      .delete(`/api/tree/${item.treeCode}/`)
       .then((res) => this.renderTrees());
   };
 

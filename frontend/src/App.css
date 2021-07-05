@@ -1,7 +1,7 @@
 .root {
   display: flex;
   flex-direction: column;
-  background: #eee;
+  background: #F7F5F2;
   height: 100%;
 }
 
@@ -11,7 +11,7 @@
   padding: 0 20px;
   align-items: center;
   justify-content: space-between;
-  background: #fff;
+  background: #F7F5F2;
   border-bottom: 1px solid #ddd;
   z-index: 999;
 }
@@ -28,7 +28,7 @@
 }
 
 .tree {
-  background: #fff;
+  background: #F7F5F2;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -43,6 +43,7 @@
   text-align: center;
   background: #F7F5F2;
 }
+
 .body {
   background: #F7F5F2;
 }

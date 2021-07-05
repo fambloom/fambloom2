@@ -47,6 +47,9 @@ class App extends Component {
           <Route exact path="/persontreeview">
             <PersonTreeView/>
           </Route>
+          <Route exact path="/treeview">
+            <TreeView/>
+          </Route>
           {/*
           <Route path="/signupjoin">
           <SignUpJoin/>

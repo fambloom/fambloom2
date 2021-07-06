@@ -5,6 +5,7 @@ import { Container, Row, Col,
 import axios from "axios";
 import AddPersonViewModal from './AddModal';
 import BioModal from "./Modal";
+import '../App.css';
 
 export default class PersonViewModal extends Component {
   constructor(props) {
@@ -222,103 +223,111 @@ handleAddSpouses= (item) => {
 
   printRelatives = (personDetail) => {
 
-    const nullMessage = ["No one here yet."];
+    const nullMessage = [""];
     let parents = null;
     if (personDetail.parents && personDetail.parents.length > 0) {
       parents = personDetail.parents.map( (p) => { 
-        return (<div><li> {p.firstName} {p.lastName}    
-      <button className="btn btn-danger ml-2 btn-sm" onClick={() => this.handleDelete(p)}>
+        return (<Row ><li className="col-auto mr-auto"> {p.firstName} {p.lastName} </li>   
+      <button className=" float-right btn btn-danger  btn-sm ml-2 my-1 py-0" style={{fontSize: "0.8em"}} onClick={() => this.handleDelete(p)}>
         Delete
-      </button></li>  
-      </div>
+      </button>
+      </Row>
       )})
     } else {
         parents = nullMessage.map( (nullMessage) => { 
-            return (<div><p>{nullMessage}</p> </div>)})
+            return (<Row><p>{nullMessage}</p> </Row>)})
      }
     let spouses = null;
     if (personDetail.spouses && personDetail.spouses.length > 0) {
       spouses = personDetail.spouses.map( (p) => { 
-        return (<div><li> {p.firstName} {p.lastName}
+        return (<Row><li className="col-auto mr-auto"> {p.firstName} {p.lastName}</li>
        
-          <button className="btn btn-danger ml-2 btn-sm" onClick={() => this.handleDelete(p)}>
+          <button className="btn btn-danger ml-2 btn-sm  my-1 py-0" style={{fontSize: "0.8em"}} onClick={() => this.handleDelete(p)}>
             Delete
-          </button></li>
-          </div>
+          </button>
+          </Row>
           )})
     } else {
         spouses = nullMessage.map((nullMessage) => { 
-            return (<div><p>{nullMessage}</p>         
-        </div>
+            return (<Row><p>{nullMessage}</p>         
+        </Row>
          )})
     }
 
     let children = null;
     if (personDetail.children && personDetail.children.length > 0) {
       children = personDetail.children.map( (p) => { 
-        return (<div><li> {p.firstName} {p.lastName}
+        return (<Row><li className="col-auto mr-auto"> {p.firstName} {p.lastName}</li>
        
-          <button className="btn btn-danger ml-2 btn-sm" onClick={() => this.handleDelete(p)}>
+          <button className="btn btn-danger ml-2 btn-sm  my-1 py-0" style={{fontSize: "0.8em"}} onClick={() => this.handleDelete(p)}>
             Delete
           </button>
-        </li>
-          </div>
+        
+          </Row>
         )
       })
     } else {
         children = nullMessage.map((nullMessage) => { 
-        return (<div><p>{nullMessage}</p>         
+        return (<Row><p>{nullMessage}</p>         
         
-            </div>
+            </Row>
             )})
      }
     
      let siblings = null;
      if (personDetail.siblings && personDetail.siblings.length > 0) {
       siblings = personDetail.siblings.map( (p) => { 
-         return (<div><li> {p.firstName} {p.lastName}
+         return (<Row><li className="col-auto mr-auto"> {p.firstName} {p.lastName}</li>
           
-           <button className="btn btn-danger ml-2 btn-sm" onClick={() => this.handleDelete(p)}>
+           <button className="btn btn-danger ml-2 btn-sm  my-1 py-0" style={{fontSize: "0.8em"}} onClick={() => this.handleDelete(p)}>
              Delete
            </button>
-        </li>
-           </div>
+ 
+           </Row>
            )})
      } else {
          siblings = nullMessage.map((nullMessage) => { 
-             return (<div><p>{nullMessage}</p>         
+             return (<Row><p>{nullMessage}</p>         
           
-         </div>
+         </Row>
           )})
      }
 
     return (
-      <div>
-       <Label for="spouses">Spouses:</Label>
-       <button className="btn btn-success ml-2 btn-sm" onClick={() => this.handleAddSpouses(this.props.activeItem)}>
+      <Container fluid> 
+      <Row>
+       <Label className="col-auto mr-auto" for="spouses">Spouses:</Label>
+       <button className=" btn btn-success ml-2 btn-sm  my-1 py-0" style={{fontSize: "0.8em"}} onClick={() => this.handleAddSpouses(this.props.activeItem)}>
             Add 
-          </button>
+          </button> </Row>
        {spouses}
+       
        <hr/>
-       <Label for="siblings">Siblings:</Label> 
-       <button className="btn btn-success ml-2 btn-sm" onClick={() => this.handleAddSiblings(this.props.activeItem)}>
+       <Row>
+       <Label className="col-auto mr-auto" for="siblings">Siblings:</Label> 
+       <button className="btn btn-success ml-2 btn-sm  my-1 py-0" style={{fontSize: "0.8em"}} onClick={() => this.handleAddSiblings(this.props.activeItem)}>
              Add 
-           </button>
+           </button> </Row>
        {siblings}
+       
        <hr/>
-       <Label for="parents">Parents:</Label>
-       <button className="btn btn-success ml-2 btn-sm" onClick={() => this.handleAddParents(this.props.activeItem)}>
+       <Row>
+       <Label  className="col-auto mr-auto" for="parents">Parents:</Label>
+       <button className="btn btn-success ml-2 btn-sm my-1 py-0" style={{fontSize: "0.8em"}} onClick={() => this.handleAddParents(this.props.activeItem)}>
             Add 
-        </button>
+        </button></Row>
         {parents}
+        
        <hr/>
-       <Label for="children">Children:</Label>
-       <button className="btn btn-success ml-2 btn-sm" onClick={() => this.handleAddChildren(this.props.activeItem)}>
+       <Row>
+       <Label  className="col-auto mr-auto" for="children">Children:</Label>
+       <button className="btn btn-success ml-2 btn-sm my-1 py-0" style={{fontSize: "0.8em"}} onClick={() => this.handleAddChildren(this.props.activeItem)}>
                 Add 
-            </button>
+            </button></Row>
        {children}
+       
      
-       </div>
+       </Container>
     )
   }
 
@@ -344,23 +353,25 @@ handleAddSpouses= (item) => {
 
     return ( <div>
       <Modal onExit={this.refreshPage} isOpen={true} toggle={toggle}>
-        <ModalHeader toggle={toggle}>{this.props.activeItem.firstName} {this.props.activeItem.lastName}</ModalHeader>
+        <ModalHeader toggle={toggle}> <h3>
+          {this.props.activeItem.firstName} {this.props.activeItem.lastName}
+          </h3></ModalHeader>
         <ModalBody>
           <Container>
             <Row>
               <Col className="col-sm-4">
                 {this.renderImage(this.props.activeItem)}
               </Col>
-              <Col className="col-sm-8 biography">
+              <Col className="col-sm-8 biography justify-content-start">
                 
-                  <div>
+                <Row>
               <Label for="birthPlace">Birth Place:</Label>
               <span className="ml-1">{this.props.activeItem.birthPlace}</span>
-              </div>
-              <div>
+              </Row>
+              <Row>
               <Label for="Biography:">Biography:</Label>
               <span className="ml-1">{this.props.activeItem.bio}</span>
-              </div>
+              </Row >
         
               </Col>
             </Row>

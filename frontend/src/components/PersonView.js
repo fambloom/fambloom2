@@ -232,11 +232,13 @@ class PersonView extends Component {
   render() {
     return (
       <div>
-        <Container>
-        <Row style={{flex:1, justifyContent: "center", alignItems: "center"}}>
-          <img width="90px" src="https://cdn.discordapp.com/attachments/854112992025903142/859693896300232724/left-icon.png" alt="Icon" />
-          <h1 body className="text-center">Tree: {this.state.treeName}</h1>
-          <img width="90px" src="https://cdn.discordapp.com/attachments/854112992025903142/859693897420636190/right-icon.png" alt="Icon" />
+        <Container fluid={true}>
+        <Row  style={{flex:1, justifyContent: "center", alignItems: "center"}}>
+          
+          <img className="float-left" width="80px" src="https://cdn.discordapp.com/attachments/854112992025903142/859693896300232724/left-icon.png" alt="Icon" />
+          <h2 body className="text-center">Tree: {this.state.treeName}</h2>
+          <img  className="float-right" width="80px" src="https://cdn.discordapp.com/attachments/854112992025903142/859693897420636190/right-icon.png" alt="Icon" />
+          
          </Row>
          <hr></hr>
          <Button className="btn btn-success mx-auto" onClick={ () => this.addItem()}>Add Person</Button>

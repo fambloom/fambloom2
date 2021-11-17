@@ -38,9 +38,9 @@ const NavigationBar = (props) => {
             {/* <NavItem>
               <NavLink exact href="/treenode">FamilyNode</NavLink>
             </NavItem> */}
-            <NavItem>
+            {/* <NavItem>
               <NavLink exact href="/statistics">Statistics</NavLink>
-            </NavItem>
+            </NavItem> */}
             {/* <NavItem>
               <NavLink exact href="/persontreeview">Person View</NavLink>
             </NavItem> */}

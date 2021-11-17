@@ -9,7 +9,7 @@
   }
 
 #homeSub {
-  font-size: calc(60% + 1vw + 1vh);
+  font-size: calc(60% + 1vw + 0.25vh);
 }
 
 

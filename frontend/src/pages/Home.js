@@ -102,8 +102,8 @@ class Home extends Component {
         <br></br>
         <br></br>
         
-        <Container fluid>
-        <Row >
+       <Container fluid>
+        <Row  >
         <Col className="px-0 ml-n5" >
         <img id="flower1" width="100%" src="https://cdn.discordapp.com/attachments/854112992025903142/859673352243511306/left.png" alt="Icon" />
         </Col>
@@ -113,12 +113,11 @@ class Home extends Component {
             <CardText id="homeSub" className="fonts">discover how your family line blossomed through time</CardText>
           </Card>
           </Col>
-          <Col className="px-0 mr-n5">
+          <Col  className=" px-0 mr-n5">
           <img id="flower2" width="100%" src="https://cdn.discordapp.com/attachments/854112992025903142/859673355452153926/right.png" alt="Icon" />
           </Col>
           </Row>
-        </Container>
-
+          </Container>
         <br></br><br></br>
         <hr></hr>
 
@@ -150,7 +149,7 @@ class Home extends Component {
       <h4 body className="text-center">Want to create your own family tree?</h4>
 <br></br>
       <Row style={{flex:1, justifyContent: "center", alignItems: "center"}}>
-<Col sm="10" md={{ size: 4 }}> 
+<Col sm="10" md={{ size: 6 }}> 
 <Card>
   <CardBody body className="text-center" >
     <CardTitle tag="h2" centered>Create</CardTitle>

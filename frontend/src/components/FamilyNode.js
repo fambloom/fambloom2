@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Card, CardBody, CardTitle, CardSubtitle, Container } from "reactstrap";
+import { Card, CardBody, CardTitle, Button, CardImg } from "reactstrap";
 import '../App.css';
 
 // dont forget to import stuff from reactstrap when u use them
@@ -29,16 +29,33 @@ export default class FamilyNode extends Component {
     }
   }
 
+  renderImage = () => {
+    let gen = this.state.node.gender;
+    if (gen==="female") {
+      return (
+        <div>
+        <CardImg className="pt-3 pb-1 px-5"  width="65%" src="https://media.discordapp.net/attachments/854112992025903142/861662921847341056/female-icon.png" />
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <CardImg className="pt-3 pb-1 px-5" width="65%" src="https://media.discordapp.net/attachments/854112992025903142/861662923961139230/male-icon.png" />
+        </div>
+      );
+    }
+  }
+
   render() {
     return (
-      <Container>
-      <Card>
+      <Card style={{width:"200px", height:"200px"}}>
+        {this.renderImage()}
         <CardBody>
-        <CardTitle tag="h5">{this.getFirstName()}</CardTitle>
-        <CardSubtitle tag="h6" className="mb-2 text-muted">{this.getLastName()}</CardSubtitle>
+          <CardTitle tag="h6"> {this.state.node.firstName}   {this.state.node.lastName} </CardTitle> 
+        
         </CardBody>
       </Card>
-      </Container>
+   
      
     );
   }

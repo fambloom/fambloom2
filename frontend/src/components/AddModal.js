@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import {
   Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Input, Label,
 } from "reactstrap";
-import axios from "axios";
 
 export default class CustomModal extends Component {
   constructor(props) {
@@ -18,7 +17,7 @@ export default class CustomModal extends Component {
 
   handleChange = (e) => {
     let { name, value } = e.target;
-    if (name == "gender") {
+    if (name === "gender") {
       value = value.toLowerCase();
     }
     const newItem = { ...this.state.newItem, [name]: value };
@@ -27,7 +26,7 @@ export default class CustomModal extends Component {
   };
 
   render() {
-    const { toggle, onSave, onParentSave } = this.props;
+    const { toggle, onSave } = this.props;
 
     return ( <div>
       <Modal isOpen={true} toggle={toggle}>

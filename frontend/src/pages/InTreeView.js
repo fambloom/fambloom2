@@ -1,20 +1,15 @@
 import React, { Component } from "react";
 import ReactFamilyTree from 'react-family-tree';
 import FamilyNode from "../components/FamilyNode";
-import * as settings from '../settings';
-import {  } from "reactstrap";
-import {
-  Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Input, Label,
-} from "reactstrap";
-import styles from '../App.css';
 // import PinchZoomPan from '../PinchZoomPan/PinchZoomPan';
 
-const WIDTH = 100;
-const HEIGHT = 100;
+const WIDTH = 200;
+const HEIGHT = 200;
 
 export default class TreeView extends Component {
-   WIDTH = 100;
-   HEIGHT = 100;
+
+   WIDTH = 200;
+   HEIGHT = 200;
 
   constructor(props) {
     super(props);
@@ -41,7 +36,7 @@ export default class TreeView extends Component {
   }
 
   handleClick (e) {
-    // console.log("HIWOADWAIHDWAOHD");
+   
     e.preventDefault();
     const item = {
       firstName: "",
@@ -56,22 +51,26 @@ export default class TreeView extends Component {
 
   
   rendermyTree = () => {
-    if (this.props.newPeopleList.length == 0){
+    console.log(this.props.newPeopleList)
+    if (this.props.newPeopleList.length === 0){
       return (<h3>empty tree</h3>)
     } else {
       return (
-        <ReactFamilyTree
+        
+        <ReactFamilyTree className="famTree"
         nodes={this.props.newPeopleList}
-        rootId={'1'}
+        rootId={this.props.newPeopleList[0].id}
         width={WIDTH}
         height={HEIGHT}
-        className={styles.tree}
-        renderNode={(node) => ( <div>
-          <FamilyNode //onClick={this.handleClick}
-            key={node.id} node={node}
-            style={{ width: WIDTH, height: HEIGHT,
-              transform: `translate(${node.left * (WIDTH / 2)}px, ${node.top * (HEIGHT / 2)}px)`,}} /> </div>
+        // className={styles.tree}
+        renderNode={(node) => ( 
+          <FamilyNode  className="famTreeNode"
+            key={node.id} node={node} isRoot={node.id === this.props.newPeopleList[0].id}
+            style={{ 
+              transform: `translate(${node.left * (WIDTH / 2)}px, ${node.top * (HEIGHT / 2)}px)`,}} 
+              /> 
           )} /> 
+    
       )
     }
 
@@ -80,11 +79,11 @@ export default class TreeView extends Component {
 
   render() {
     return (
-      <div className={styles.root}>
-         <div className={styles.wrapper}>
+    
+         <div className="famTreeContainer">
             {this.rendermyTree()}
           </div>
-      </div>
+     
     );
   }
 

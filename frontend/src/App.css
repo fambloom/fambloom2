@@ -86,3 +86,26 @@ html, body, #app, #app>div {
     transform: rotate(360deg);
   }
 }
+
+
+
+.famTreeContainer {
+  display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.famTree {
+  width: fit-content;
+  height: fit-content;
+}
+
+.famTreeNode {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}

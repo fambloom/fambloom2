@@ -13,7 +13,7 @@ export default class CustomModal extends Component {
 
   handleChange = (e) => {
     let { name, value } = e.target;
-    if (name == "gender") {
+    if (name === "gender") {
       value = value.toLowerCase();
     }
     const activeItem = { ...this.state.activeItem, [name]: value };

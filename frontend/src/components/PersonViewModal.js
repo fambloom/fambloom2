@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Container, Row, Col,
-  Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Input, Label, NavItem,
-} from "reactstrap";
+  Button, Modal, ModalHeader, ModalBody, ModalFooter, Label } from "reactstrap";
 import axios from "axios";
 import AddPersonViewModal from './AddModal';
 import BioModal from "./Modal";
@@ -73,7 +72,7 @@ export default class PersonViewModal extends Component {
   }
 
   handleStep2 = (item) => {
-    if (this.state.relationship == "parents") {
+    if (this.state.relationship === "parents") {
       let newParents =  [...item.parents];
       newParents.push(this.state.newItem.id);
   
@@ -82,7 +81,7 @@ export default class PersonViewModal extends Component {
       .catch(err => { console.log(err) });
     }
 
-    if (this.state.relationship == "children") {
+    if (this.state.relationship === "children") {
       let newChildren =  [...item.children];
       newChildren.push(this.state.newItem.id);
  
@@ -96,7 +95,7 @@ export default class PersonViewModal extends Component {
   handleSubmit = (item, newItem) => {
     this.toggle();
    
-    if (this.state.relationship == "parents" || this.state.relationship == "children") {
+    if (this.state.relationship === "parents" || this.state.relationship === "children") {
       axios.post(`/api/person/`, newItem, )
       .then((res) => { 
         this.setState({ newItem: res.data });
@@ -333,16 +332,16 @@ handleAddSpouses= (item) => {
 
   renderImage = (item) => {
     let gen = item.gender;
-    if (gen=="female") {
+    if (gen==="female") {
       return (
         <div>
-        <img width="100%" src="https://media.discordapp.net/attachments/854112992025903142/861662921847341056/female-icon.png" />
+        <img alt="female" width="100%" src="https://media.discordapp.net/attachments/854112992025903142/861662921847341056/female-icon.png" />
         </div>
       );
     } else {
       return (
         <div>
-          <img width="100%" src="https://media.discordapp.net/attachments/854112992025903142/861662923961139230/male-icon.png" />
+          <img alt="male" width="100%" src="https://media.discordapp.net/attachments/854112992025903142/861662923961139230/male-icon.png" />
         </div>
       );
     }

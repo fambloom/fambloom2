@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import history from '../history';
 
-import { Container, Col, Card, CardImg, CardFooter, CardBody, CardColumns, CardTitle, CardDeck, CardSubtitle, Row, Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Input, Label } from "reactstrap";
+import { Container, Card, CardImg, CardBody, CardColumns, CardTitle, Row, Button } from "reactstrap";
 import axios from "axios";
 import PersonViewModal from './PersonViewModal';
 import AddModal from './Modal';
@@ -162,7 +162,7 @@ class PersonView extends Component {
 
   renderImage = (item) => {
     let gen = item.gender;
-    if (gen=="female") {
+    if (gen==="female") {
       return (
         <div>
         <CardImg className="pt-3 pb-1 px-5"  width="65%" src="https://media.discordapp.net/attachments/854112992025903142/861662921847341056/female-icon.png" />
@@ -179,7 +179,7 @@ class PersonView extends Component {
 
   renderPeople = (item) => {
     const newItems = this.state.peopleList;
-    return newItems.filter(person => person.tree == item).map((item) => (
+    return newItems.filter(person => person.tree === item).map((item) => (
       <Card style={{width:"225px"}}>
         {this.renderImage(item)}
         <CardBody>

@@ -1,9 +1,9 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 import { Container, Row, Col } from "reactstrap";
 import { withRouter } from 'react-router'
 import history from '../history';
-import { Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button, FormGroup, Label, Input
+import { Card, CardText, CardBody,
+  CardTitle, Button, FormGroup, Label, Input
 } from 'reactstrap';
 import axios from "axios";
 import './Pages.css';

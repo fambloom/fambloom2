@@ -3,9 +3,8 @@ import history from '../history';
 
 import InTreeView from "../pages/InTreeView";
 import axios from "axios";
-import {  } from "reactstrap";
 import * as tools from "../tools";
-// import PinchZoomPan from '../PinchZoomPan/PinchZoomPan';
+import PinchZoomPan from "pinch-zoom-pan";
 
 
 class TreeView extends Component {
@@ -15,7 +14,7 @@ class TreeView extends Component {
     // {this.setState({treeCode: history.location.state.treeCode})}
 
     this.state = {
-      treeCode: history.location.state.treeCode,
+      treeCode: "A", //history.location.state.treeCode,
       treeName: "",
       newPeopleList: [],
       peopleList: [],
@@ -63,6 +62,7 @@ class TreeView extends Component {
       <div >
         <h1>Family Tree View: {this.state.treeName}</h1>
         <InTreeView newPeopleList={this.state.newPeopleList}></InTreeView>
+        
     
       </div>
     );

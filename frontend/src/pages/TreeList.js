@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import history from '../history';
 import { withRouter } from 'react-router'
-import { Container, Row, Col } from "reactstrap";
 
 
 import Modal from "../components/TreeModal";

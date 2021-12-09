@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-import {  } from "reactstrap";
-import { Container, Row, Col } from "reactstrap";
-import { Card, CardImg, CardText, CardBody, CardDeck, CardColumns,
-  CardTitle, CardSubtitle, Button
-} from 'reactstrap';
+import { Container } from "reactstrap";
+import { Card, CardBody, CardColumns} from 'reactstrap';
 import axios from "axios";
 import { PieChart } from 'react-minimal-pie-chart';
 
@@ -41,13 +38,13 @@ export default class Statistics extends Component {
     return newItems.map((item) => ( //className="mx-auto"
       <Card  >
       <CardBody body className="text-center">
-      { item.women!=0 && item.men !=0 &&
+      { item.women!==0 && item.men !==0 &&
       <PieChart style={{height: "150px"}} lineWidth={50} label={({ dataEntry }) => dataEntry.title}
         data={[{ title: "women", value: item.women,  color: '#e995fc' },
           { title: "men", value: item.men,  color: '#67d0f0'   }]}
       /> }
 
-      {item.women==0 && item.men ==0 && <h3>Empty Tree!</h3>}
+      {item.women===0 && item.men ===0 && <h3>Empty Tree!</h3>}
       <hr></hr>
       <h5>{item.treeName}</h5>
         <h6>{item.women} are female</h6>

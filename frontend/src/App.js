@@ -9,6 +9,7 @@ import Statistics from './pages/Statistics'
 import FamilyNode from './components/FamilyNode'
 import PersonTreeView from './components/PersonView'
 import TreeView from './pages/TreeView'
+import LFTreeView from './pages/LFTreeView'
 import TreeList from './pages/TreeList'
 
 
@@ -52,6 +53,9 @@ class App extends Component {
           </Route>
           <Route exact path="/treeview">
             <TreeView/>
+          </Route>
+          <Route exact path="/LFtreeview">
+            <LFTreeView/>
           </Route>
           <Route exact path="/treelist">
             <TreeList/>

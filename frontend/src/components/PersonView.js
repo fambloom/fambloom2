@@ -165,13 +165,13 @@ class PersonView extends Component {
     if (gen==="female") {
       return (
         <div>
-        <CardImg className="pt-3 pb-1 px-5"  width="65%" src="https://media.discordapp.net/attachments/854112992025903142/861662921847341056/female-icon.png" />
+        <CardImg className="pt-3 pb-1 px-5"  width="65%" src="female.png" />
         </div>
       );
     } else {
       return (
         <div>
-          <CardImg className="pt-3 pb-1 px-5" width="65%" src="https://media.discordapp.net/attachments/854112992025903142/861662923961139230/male-icon.png" />
+          <CardImg className="pt-3 pb-1 px-5" width="65%" src="male.png" />
         </div>
       );
     }

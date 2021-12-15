@@ -1,7 +1,7 @@
 .root {
   display: flex;
   flex-direction: column;
-  background: #F7F5F2;
+  background-color: #F7F5F2;
   height: 100%;
 }
 
@@ -11,7 +11,7 @@
   padding: 0 20px;
   align-items: center;
   justify-content: space-between;
-  background: #F7F5F2;
+  background-color: #F7F5F2;
   border-bottom: 1px solid #ddd;
   z-index: 999;
 }
@@ -28,7 +28,7 @@
 }
 
 .tree {
-  background: #F7F5F2;
+  background-color: #F7F5F2;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -41,7 +41,7 @@
 
 .App {
   text-align: center;
-  background: #F7F5F2;
+  background-color: #F7F5F2;
   
 }
 html, body, #app, #app>div {
@@ -49,7 +49,7 @@ html, body, #app, #app>div {
 }
 
 .body {
-  background: #F7F5F2;
+  background-color: #F7F5F2;
 }
 
 .App-logo {

@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import history from '../history';
 
-import InTreeView from "../pages/InTreeView";
+import LFInTreeView from "../pages/LFInTreeView";
 import axios from "axios";
 import * as tools from "../tools";
 
 
-class TreeView extends Component {
+class LFTreeView extends Component {
 
   constructor(props) {
     super(props);
@@ -17,7 +17,7 @@ class TreeView extends Component {
       treeName: "",
       newPeopleList: [],
       peopleList: [],
-
+      loaded: false,
     };
   }
 
@@ -33,6 +33,7 @@ class TreeView extends Component {
       .then((res) => {
         this.setState((state, props) => ( {newPeopleList: tools.objectReformat(res.data.people)} ) );  
         this.setState({treeName: res.data.treeName});
+        this.setState({loaded: true});
         console.log("new items here");
         console.log(this.state.newPeopleList);
       })
@@ -44,8 +45,9 @@ class TreeView extends Component {
     
     return (
       <div >
-        <h1>Family Tree View: {this.state.treeName}</h1>
-        <InTreeView newPeopleList={this.state.newPeopleList}></InTreeView>
+        <h1>Family Tree: {this.state.treeName}</h1>
+        {this.state.loaded && <LFInTreeView dataRootId={this.state.newPeopleList[0].id} 
+        newPeopleList={this.state.newPeopleList}></LFInTreeView> }
         
     
       </div>
@@ -54,4 +56,4 @@ class TreeView extends Component {
 
 }
 
-export default TreeView;
+export default LFTreeView;

@@ -4,11 +4,6 @@ import { Card, CardBody, CardColumns} from 'reactstrap';
 import axios from "axios";
 import { PieChart } from 'react-minimal-pie-chart';
 
-// Example data
-// backend will pass in array of two numbers: # of female, # of male.
-const data = [40, 60]
-
-
 
 
 // dont forget to import stuff from reactstrap when u use them

@@ -105,16 +105,16 @@ class Home extends Component {
        <Container fluid>
         <Row  >
         <Col className="px-0 ml-n5" >
-        <img id="flower1" width="100%" src="https://cdn.discordapp.com/attachments/854112992025903142/859673352243511306/left.png" alt="Icon" />
+        <img id="flower1" width="100%" src="left.png" alt="Icon" />
         </Col>
           <Col >
           <Card id="homeLogo" body className="text-center mx-n4">
-            <img width="100%" src="https://cdn.discordapp.com/attachments/854112992025903142/859679165317382154/logo.png" alt="Logo" />
+            <img width="100%" src="logo.png" alt="Logo" />
             <CardText id="homeSub" className="fonts">discover how your family line blossomed through time</CardText>
           </Card>
           </Col>
           <Col  className=" px-0 mr-n5">
-          <img id="flower2" width="100%" src="https://cdn.discordapp.com/attachments/854112992025903142/859673355452153926/right.png" alt="Icon" />
+          <img id="flower2" width="100%" src="right.png" alt="Icon" />
           </Col>
           </Row>
           </Container>
@@ -124,9 +124,9 @@ class Home extends Component {
       <Container style={{flex:1, justifyContent: "center", alignItems: "center"}}>
 
       <Row style={{flex:1, justifyContent: "center", alignItems: "center"}}>
-          <img width="60px" src="https://cdn.discordapp.com/attachments/854112992025903142/859693896300232724/left-icon.png" alt="Icon" />
+          <img width="60px" src="left-icon.png" alt="Icon" />
           <h4 body className="text-center">List of Public Trees</h4>
-          <img width="60px" src="https://cdn.discordapp.com/attachments/854112992025903142/859693897420636190/right-icon.png" alt="Icon" />
+          <img width="60px" src="right-icon.png" alt="Icon" />
       </Row>
      
       <Row className="flex-wrap" style={{flex:1, justifyContent: "center", alignItems: "center"}}>
@@ -137,13 +137,6 @@ class Home extends Component {
       <hr></hr>
 
     
-        {/* <Container>
-      <Row style={{flex:1, justifyContent: "center", alignItems: "center"}}>
-          <img width="60px" src="https://cdn.discordapp.com/attachments/854112992025903142/859693896300232724/left-icon.png" alt="Icon" />
-          <h4 body className="text-center">Want to create your own family tree?</h4>
-          <img width="60px" src="https://cdn.discordapp.com/attachments/854112992025903142/859693897420636190/right-icon.png" alt="Icon" />
-      </Row>
-      </Container> */}
   <br></br>
       <Container>
       <h4 body className="text-center">Want to create your own family tree?</h4>
@@ -151,7 +144,7 @@ class Home extends Component {
       <Row style={{flex:1, justifyContent: "center", alignItems: "center"}}>
 <Col sm="10" md={{ size: 6 }}> 
 <Card>
-  <CardBody body className="text-center" >
+  <CardBody className="text-center" >
     <CardTitle tag="h2" centered>Create</CardTitle>
     <CardTitle tag="h5" centered>a new family tree</CardTitle>
     <FormGroup>
@@ -165,8 +158,6 @@ class Home extends Component {
 </Col>
 </Row><br></br>
     
-      <br></br>
-      <br></br>
       </Container>
 
       </Container>
